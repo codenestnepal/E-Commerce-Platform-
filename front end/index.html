@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eComstyle.css">
+</head>
+<body>
+      <header>
+    <nav class="nav-bar">
+        <!-- 1.) Company logo -->
+      <div class="lo-go">LOGO</div>
+
+      <!-- 2.) Navigation Section -->
+      <ul class="nav-link">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- 3.) Search bar -->
+      <div class="search-container">
+        <input type="text" placeholder="Search" id="SearchQuery">
+        <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></i></button>
+      </div>
+
+      <!-- 4.) Cart Icon -->
+      <div class="cart"><i class="fa-solid fa-cart-shopping"></i></div>
+
+      <!-- 5.) Login/Sign up button -->
+      <button class="login-btn">Login / Sign Up</button>
+    </nav>
+  </header>
+
+
+<section class="hero-section">
+  <!-- Left content -->
+  <div class="hero-content">
+    <h1>Discover the Latest Fashion Trends</h1>
+    <p>Upgrade your style with our newest collection, designed for comfort and elegance.</p>
+    <button class="hero-btn">Shop Now</button>
+  </div>
+
+  <!-- Right content image -->
+  <div class="hero-image">
+    <img src="/front end/Images/FASHION.jpg" alt="Fashion Product/Trends">
+  </div>
+</section>
+
+
+<section class="featured-categories">
+  <h2>Featured Categories</h2>
+  <div class="categories-container">
+    <div class="category-card">Electronics</div>
+    <div class="category-card">Fashion</div>
+    <div class="category-card">Home & Living</div>
+    <div class="category-card">Beauty</div>
+    <div class="category-card">Sports</div>
+  </div>
+</section>
+
+
+
+<section class="best-selling">
+  <h2>Best-Selling Products</h2>
+  <div class="products-container">
+    <!-- The product card -->
+    <div class="product-card">
+      <img src="product1.jpg" alt="Product Display">
+      <h3>Smartphone X</h3>
+      <p class="price">$499</p>
+      <button class="cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="product2.jpg" alt="Product Display">
+      <h3>Stylish Jacket</h3>
+      <p class="price">$89</p>
+      <button class="cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="product3.jpg" alt="Product Display">
+      <h3>Modern Sofa</h3>
+      <p class="price">$799</p>
+      <button class="cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="product4.jpg" alt="Product Display">
+      <h3>Beauty Kit</h3>
+      <p class="price">$59</p>
+      <button class="cart-btn">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="special-offers">
+  <h2>Special Offers</h2>
+  <div class="offers-container">
+    
+    <!-- The offer card -->
+    <div class="offer-card">
+      <h3>Limited-Time Deal</h3>
+      <p>Up to 50% off on Electronics</p>
+      <button class="offer-btn">Shop Now</button>
+    </div>
+
+    <div class="offer-card">
+      <h3>Seasonal Sale</h3>
+      <p>Summer Collection – Save 30%</p>
+      <button class="offer-btn">Explore</button>
+    </div>
+
+    <div class="offer-card">
+      <h3>Coupon Code</h3>
+      <p>Use <strong>FASHION20</strong> for 20% off</p>
+      <button class="offer-btn">Apply Code</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="customer-reviews">
+  <h2>What Our Customers Say</h2>
+  <div class="reviews-container">
+    
+    <!-- Review Card -->
+    <div class="review-card">
+      <img src="/front end/Images/EMOJI1.png" alt="Customer 1" class="review-img">
+      <h3>Jane Doe</h3>
+      <div class="stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+      <p>"Absolutely love the quality of the products! Fast delivery and great service."</p>
+    </div>
+
+    <div class="review-card">
+      <img src="/front end/Images/EMOJI1.png" alt="Customer 2" class="review-img">
+      <h3>John Smith</h3>
+      <div class="stars">&#11088;&#11088;&#11088;</div>
+      <p>"Trendy fashion items at affordable prices. Will definitely shop again."</p>
+    </div>
+
+    <div class="review-card">
+      <img src="/front end/Images/EMOJI1.png" alt="Customer 3" class="review-img">
+      <h3>Emily Johnson</h3>
+      <div class="stars">&#11088;&#11088;&#11088;&#11088;</div>
+      <p>"The seasonal sale was amazing! Got everything I wanted with big discounts."</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <script src="eComjs.js"></script>
+  <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
