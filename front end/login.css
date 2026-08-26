@@ -1,0 +1,272 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    font-family:'Segoe UI',sans-serif;
+    background:#f8fafc;
+}
+
+body{
+    min-height:100vh;
+}
+
+/*MAIN LAYOUT*/
+
+.container{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/*BRAND SECTION*/
+
+.brand-section{
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+    color:white;
+    padding:40px 24px;
+}
+
+.brand-content{
+    max-width:600px;
+    margin:auto;
+}
+
+.brand-section h1{
+    font-size:2.5rem;
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+
+.brand-section h2{
+    font-size:1.3rem;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.brand-section p{
+    color:#cbd5e1;
+    line-height:1.7;
+    font-size:0.95rem;
+}
+
+/*LOGIN SECTION*/
+
+.login-section{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:24px;
+}
+
+.login-card{
+    width:100%;
+    max-width:450px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+}
+
+.login-card h2{
+    color:#111827;
+    margin-bottom:8px;
+}
+
+.login-card p{
+    color:#6b7280;
+    margin-bottom:24px;
+}
+
+/*FORM*/
+
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+input[type="email"],
+input[type="password"]{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    margin-bottom:16px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.options label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#475569;
+}
+
+.options a{
+    text-decoration:none;
+    color:#2563eb;
+}
+
+.options a:hover{
+    text-decoration:underline;
+}
+
+/*BUTTONS*/
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+button[type="submit"]{
+    background:#2563eb;
+    color:white;
+}
+
+button[type="submit"]:hover{
+    background:#1d4ed8;
+}
+
+.google-btn{
+    background:white;
+    border:1px solid #d1d5db;
+    color:#111827;
+}
+
+.google-btn:hover{
+    background:#f8fafc;
+}
+
+/*DIVIDER*/
+
+.divider{
+    position:relative;
+    text-align:center;
+    margin:24px 0;
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:42%;
+    height:1px;
+    background:#e5e7eb;
+}
+
+.divider::before{
+    left:0;
+}
+
+.divider::after{
+    right:0;
+}
+
+.divider span{
+    background:white;
+    padding:0 10px;
+    color:#94a3b8;
+}
+
+/*FOOTER LINK*/
+
+.signup-link{
+    margin-top:20px;
+    text-align:center;
+}
+
+.signup-link a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/*TABLE*/
+
+@media (min-width:768px){
+
+    .brand-section{
+        padding:60px 40px;
+    }
+
+    .brand-section h1{
+        font-size:3.5rem;
+    }
+
+    .brand-section h2{
+        font-size:1.8rem;
+    }
+
+    .login-card{
+        padding:40px;
+    }
+}
+
+/*DESKTOP*/
+
+@media (min-width:1024px){
+
+    .container{
+        flex-direction:row;
+    }
+
+    .brand-section{
+        flex:1;
+        display:flex;
+        align-items:center;
+        padding:80px;
+    }
+
+    .login-section{
+        flex:1;
+        padding:40px;
+    }
+
+    .login-card{
+        max-width:480px;
+    }
+
+    .brand-section h1{
+        font-size:4.5rem;
+    }
+
+    .brand-section h2{
+        font-size:2rem;
+    }
+
+    .brand-section p{
+        font-size:1.05rem;
+    }
+}

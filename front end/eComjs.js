@@ -1,3 +1,5 @@
+//Logic for Login/Signup page
+
 function searchbar() {
   const query = document.getElementById("SearchQuery").value;
   if(query) {
