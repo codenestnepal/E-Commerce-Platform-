@@ -414,3 +414,200 @@ body {
   color: #555;
   line-height: 1.4;
 }
+
+
+/*-------------------W H Y---C H O O S E-----U S------------------------------------------------------------------------*/
+.why-choose-us {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #d1c6c6;
+}
+
+.why-choose-us h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+
+.choose-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+
+.choose-card {
+  background-color: #fffcf4;
+  border-radius: 15px;          
+  width: 220px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.choose-card i {
+  font-size: 2rem;
+  color: tomato;
+  margin-bottom: 15px;
+}
+
+.choose-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.choose-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+
+.choose-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  background-color: #fff5f5;    
+}
+
+/*----------------------------N E W S ---L E T T E R----------S U B S C I P T I O N----------------------------------------------------*/
+.newsletter {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff5f5; /* subtle tomato tint */
+}
+
+.newsletter h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.newsletter p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.subscribe-btn {
+  padding: 10px 20px;
+  background-color: tomato;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.subscribe-btn:hover {
+  background-color: orangered;
+  transform: scale(1.05);
+}
+
+
+
+/*-------------------------------F O O T E R-----------------------------------------------------------------*/
+.site-footer {
+  background-color: #1d1c1c;
+  color: white;
+  padding: 40px 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 20px;
+  margin-left: 78px;
+  font-size: 1.2rem;
+  color: tomato;
+}
+
+.footer-section p,
+.footer-section ul {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+  margin-left: 78px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: tomato;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center; 
+  gap: 20px;
+  margin: 0; 
+}
+
+.social-links a {
+  margin-right: 20px;
+  font-size: 1.3rem;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: tomato;
+}
+
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+
+@media (max-width: 768px) {
+  .newsletter-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin-bottom: 20px;
+  }
+}
