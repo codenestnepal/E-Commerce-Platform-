@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Shop - E-Commerce</title>
+        <meta name="description" content="Explore our latest collection of products.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="shop.css">
+    </head>
+    <body>
+     <header>
+    <nav class="nav-bar">
+        <!-- 1.) Company logo -->
+      <div class="lo-go">LOGO</div>
+
+      <!-- 2.) Navigation Section -->
+      <ul class="nav-link">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#categories">Categories</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+
+      <!-- 3.) Search bar -->
+      <div class="search-container">
+        <input type="text" placeholder="Search" id="SearchQuery">
+        <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <!-- 4.) Cart Icon -->
+      <div class="cart"><i class="fa-solid fa-cart-shopping"></i></div>
+
+      <!-- 5.) Login/Sign up button -->
+      <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+    </nav>
+  </header>
+
+   <section class="shop-section" id="shop">
+
+    <div class="shop-header">
+        <h2 class="shop-title">Our Products</h2>
+        <p class="shop-subtitle">Explore our handpicked collection of high-quality items curated just for you</p>
+        <div class="title-underline"></div>
+    </div>
+
+    <!-- Electronics -->
+    <div class="category-row">
+        <h3>Electronics</h3>
+
+        <div class="products-grid">
+            <div class="shop-card">
+                <img src="electronics1.jpg" alt="">
+                <h4>Smartphone</h4>
+                <p>$499</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="electronics2.jpg" alt="">
+                <h4>Laptop</h4>
+                <p>$899</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="electronics3.jpg" alt="">
+                <h4>Headphones</h4>
+                <p>$129</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="electronics4.jpg" alt="">
+                <h4>Smart Watch</h4>
+                <p>$199</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fashion -->
+    <div class="category-row">
+        <h3>Fashion</h3>
+
+        <div class="products-grid">
+            <div class="shop-card">
+                <img src="fashion1.jpg" alt="">
+                <h4>Jacket</h4>
+                <p>$89</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="fashion2.jpg" alt="">
+                <h4>T-Shirt</h4>
+                <p>$25</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="fashion3.jpg" alt="">
+                <h4>Jeans</h4>
+                <p>$49</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="fashion4.jpg" alt="">
+                <h4>Sneakers</h4>
+                <p>$75</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home & Living -->
+    <div class="category-row">
+        <h3>Home & Living</h3>
+
+        <div class="products-grid">
+            <div class="shop-card">
+                <img src="home1.jpg" alt="">
+                <h4>Sofa</h4>
+                <p>$799</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="home2.jpg" alt="">
+                <h4>Chair</h4>
+                <p>$149</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="home3.jpg" alt="">
+                <h4>Table</h4>
+                <p>$199</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="home4.jpg" alt="">
+                <h4>Lamp</h4>
+                <p>$59</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beauty -->
+    <div class="category-row">
+        <h3>Beauty</h3>
+
+        <div class="products-grid">
+            <div class="shop-card">
+                <img src="beauty1.jpg" alt="">
+                <h4>Beauty Kit</h4>
+                <p>$59</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="beauty2.jpg" alt="">
+                <h4>Perfume</h4>
+                <p>$79</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="beauty3.jpg" alt="">
+                <h4>Face Wash</h4>
+                <p>$19</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="beauty4.jpg" alt="">
+                <h4>Moisturizer</h4>
+                <p>$29</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sports -->
+    <div class="category-row">
+        <h3>Sports</h3>
+
+        <div class="products-grid">
+            <div class="shop-card">
+                <img src="sports1.jpg" alt="">
+                <h4>Football</h4>
+                <p>$35</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="sports2.jpg" alt="">
+                <h4>Basketball</h4>
+                <p>$30</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="sports3.jpg" alt="">
+                <h4>Gym Bag</h4>
+                <p>$45</p>
+            </div>
+
+            <div class="shop-card">
+                <img src="sports4.jpg" alt="">
+                <h4>Yoga Mat</h4>
+                <p>$25</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+        
+        <script src="eComjs.js"></script>
+        <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
+    </body>
+</html>
