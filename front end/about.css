@@ -1,0 +1,439 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Share Tech";
+}
+
+body{
+    background:#fff;
+    color:#333;
+}
+
+.lo-go {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/*-------------N A V I G A T I O N------B A R-------------------*/
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  padding: 15px 5%;
+  color: white;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.nav-link {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link li a {
+  text-decoration: none;
+}
+
+.nav-link li {
+  margin: 0 15px;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.nav-link a:hover {
+  color: tomato;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.search-container button {
+  margin-left: 5px;
+  padding: 8px 12px;
+  border: none;
+  background-color: tomato;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #8B0000;
+}
+
+.cart {
+  font-size: 1.2rem;
+  margin-right: 15px;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.cart:hover {
+  color: tomato;
+}
+
+.login-btn {
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: tomato;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #8B0000;
+}
+
+/* ==========================
+   HERO SECTION
+========================== */
+
+.about-hero{
+    height:60vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    background:linear-gradient(
+        rgba(0,0,0,.5),
+        rgba(0,0,0,.5)
+    ),
+    url("about-banner.jpg") center/cover;
+    transition:0.5s ease;
+}
+
+.about-hero:hover{
+    background-position:center top;
+}
+
+.about-content h1{
+    font-size:4rem;
+    color:white;
+    margin-bottom:20px;
+}
+
+.about-content p{
+    max-width:700px;
+    color:white;
+    font-size:1.2rem;
+    line-height:1.6;
+}
+
+/* ==========================
+   OUR STORY
+========================== */
+
+.our-story{
+    padding:80px 8%;
+    display:flex;
+    gap:50px;
+    align-items:center;
+}
+
+.story-image{
+    flex:1;
+    overflow:hidden;
+    border-radius:15px;
+}
+
+.story-image img{
+    width:100%;
+    border-radius:15px;
+    transition:0.4s ease;
+}
+
+.story-image img:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+.story-content{
+    flex:1;
+}
+
+.story-content h2{
+    font-size:2.5rem;
+    color:tomato;
+    margin-bottom:20px;
+    transition:0.3s ease;
+}
+
+.story-content h2:hover{
+    color:#8B0000;
+}
+
+.story-content p{
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+/* ==========================
+   OUR VALUES
+========================== */
+
+.our-values{
+    padding:80px 8%;
+    background:#f8f8f8;
+    text-align:center;
+}
+
+.our-values h2{
+    font-size:2.5rem;
+    margin-bottom:50px;
+    transition:0.3s ease;
+}
+
+.our-values h2:hover{
+    color:tomato;
+}
+
+.values-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+}
+
+.value-card{
+    width:300px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:0.3s ease;
+    cursor:pointer;
+}
+
+.value-card i{
+    font-size:2.5rem;
+    color:tomato;
+    margin-bottom:15px;
+    transition:0.3s ease;
+}
+
+.value-card h3{
+    margin-bottom:10px;
+    transition:0.3s ease;
+}
+
+.value-card p{
+    transition:0.3s ease;
+}
+
+.value-card:hover{
+    transform:translateY(-10px);
+    background:tomato;
+}
+
+.value-card:hover i,
+.value-card:hover h3,
+.value-card:hover p{
+    color:white;
+}
+
+/* ==========================
+   TEAM SECTION
+========================== */
+
+.team-section{
+    padding:80px 8%;
+    text-align:center;
+}
+
+.team-section h2{
+    font-size:2.5rem;
+    margin-bottom:50px;
+    transition:0.3s ease;
+}
+
+.team-section h2:hover{
+    color:tomato;
+}
+
+.team-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.team-card{
+    width:280px;
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:0.4s ease;
+    cursor:pointer;
+}
+
+.team-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+.team-card img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    transition:0.4s ease;
+}
+
+.team-card:hover img{
+    transform:scale(1.1);
+}
+
+.team-card h3{
+    margin-top:15px;
+    transition:0.3s ease;
+}
+
+.team-card:hover h3{
+    color:tomato;
+}
+
+.team-card p{
+    padding:15px;
+    color:#666;
+}
+
+/* ==========================
+   STATISTICS
+========================== */
+
+.stats-section{
+    padding:80px 8%;
+    background:#222;
+    color:white;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:40px;
+}
+
+.stat-card{
+    text-align:center;
+    transition:0.3s ease;
+    cursor:pointer;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+}
+
+.stat-card h3{
+    font-size:3rem;
+    color:tomato;
+    transition:0.3s ease;
+}
+
+.stat-card:hover h3{
+    color:white;
+}
+
+.stat-card p{
+    margin-top:10px;
+    transition:0.3s ease;
+}
+
+.stat-card:hover p{
+    color:tomato;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+    .our-story{
+        flex-direction:column;
+    }
+
+    .about-content h1{
+        font-size:3rem;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .nav-bar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-link {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-link li {
+        margin: 5px 10px;
+    }
+
+    .cart {
+        margin-right: 0;
+    }
+
+    .about-content h1{
+        font-size:2.5rem;
+    }
+
+    .story-content h2,
+    .our-values h2,
+    .team-section h2{
+        font-size:2rem;
+    }
+
+    .value-card,
+    .team-card{
+        width:100%;
+        max-width:350px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .about-hero{
+        height:50vh;
+    }
+
+    .about-content h1{
+        font-size:2rem;
+    }
+
+    .about-content p{
+        font-size:1rem;
+    }
+
+    .stats-section{
+        flex-direction:column;
+        gap:25px;
+    }
+
+}
