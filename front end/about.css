@@ -15,6 +15,16 @@ body{
   font-weight: bold;
 }
 
+.lo-go a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.lo-go a:hover {
+  color: tomato;
+}
+
 /*-------------N A V I G A T I O N------B A R-------------------*/
 .nav-bar {
   display: flex;
