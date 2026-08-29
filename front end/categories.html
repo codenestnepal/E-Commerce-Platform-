@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-commerce Categories</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="categories.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="categories.css">
+    <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
+
+  <!-- Header & Navigation -->
+  <header>
     <nav class="nav-bar">
-        <!-- 1.) Company logo -->
+      <!-- 1.) Company logo -->
       <div class="lo-go">LOGO</div>
 
       <!-- 2.) Navigation Section -->
       <ul class="nav-link">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#home">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
         <li><a href="categories.html">Categories</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
       </ul>
 
       <!-- 3.) Search bar -->
@@ -40,143 +39,162 @@
     </nav>
   </header>
 
+  <!-- Hero Section -->
+  <section class="categories-hero">
+    <div class="shop-header">
+      <h1 class="shop-title">Product Categories</h1>
+      <p class="shop-subtitle">Every piece in the collection, sorted the way you shop — pick a category to jump straight into products.</p>
+      <div class="title-underline"></div>
+    </div>
 
-<nav class="nav">
-  <div class="nav-icons">
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"></button>
-      <span></span><span></span><span></span>
-    </button>
-  </div> 
-</nav>
+    <div class="search-row">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="catSearch" placeholder="Search categories — try 'Electronics' or 'Fashion'" aria-label="Search categories">
+      <span class="search-count" id="catCount">8 categories</span>
+    </div>
+  </section>
 
-<header class="hero">
-  <h1>Find your <em>shape</em>, then shop it.</h1>
-  <p class="hero-sub">Every piece in the collection, sorted the way you actually get dressed — by category, not by algorithm. Pick one to jump straight in.</p>
+  <!-- Categories Grid Section -->
+  <section class="grid-section">
+    <div class="grid-heading">
+      <h2>Explore Categories</h2>
+      <span>Updated Weekly</span>
+    </div>
 
-  <div class="search-row">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <input type="text" id="catSearch" placeholder="Search categories — try “cellphone” or “shirt”" aria-label="Search categories">
-    <span class="search-count" id="catCount">8 shown</span>
-  </div>
-</header>
+    <div class="cat-grid" id="catGrid">
 
+      <a class="cat-card" data-name="electronics gadgets devices" href="shop.html?category=electronics">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><path d="M12 16h40v32H12z"/><circle cx="32" cy="32" r="4"/></svg>
+        <div class="cat-name">Electronics</div>
+        <div class="cat-count">145 pieces</div>
+        <div class="cat-cta">Shop Electronics <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-<section class="grid-section">
-  <div class="grid-heading">
-    <h2>Shop by category</h2>
-    <span>Updated weekly</span>
-  </div>
+      <a class="cat-card" data-name="fashion clothing apparel" href="shop.html?category=fashion">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><path d="M26 8h12l4 8-6 4 2 30H24l2-30-6-4 4-8z"/><path d="M26 8c0 4 3 6 6 6s6-2 6-6"/></svg>
+        <div class="cat-name">Fashion</div>
+        <div class="cat-count">312 pieces</div>
+        <div class="cat-cta">Shop Fashion <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-  <div class="cat-grid" id="catGrid">
+      <a class="cat-card" data-name="home living furniture decor" href="shop.html?category=home">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><path d="M12 28h40v20H12z"/><path d="M12 28l20-16 20 16"/></svg>
+        <div class="cat-name">Home &amp; Living</div>
+        <div class="cat-count">198 pieces</div>
+        <div class="cat-cta">Shop Home &amp; Living <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-    <a class="cat-card" style="--swatch:#7A3B3F" data-name="electronics gadgets devices" href="shop.html?category=electronics">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><path d="M12 16h40v32H12z"/><circle cx="32" cy="32" r="4"/></svg>
-      <div class="cat-name">Electronics</div>
-      <div class="cat-count">145 pieces</div>
-      <div class="cat-cta">Shop electronics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+      <a class="cat-card" data-name="beauty skincare makeup" href="shop.html?category=beauty">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><circle cx="32" cy="24" r="8"/><path d="M24 40h16v12H24z"/></svg>
+        <div class="cat-name">Beauty</div>
+        <div class="cat-count">134 pieces</div>
+        <div class="cat-cta">Shop Beauty <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-    <a class="cat-card" style="--swatch:#2F4538" data-name="fashion clothing apparel" href="shop.html?category=fashion">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><path d="M26 8h12l4 8-6 4 2 30H24l2-30-6-4 4-8z"/><path d="M26 8c0 4 3 6 6 6s6-2 6-6"/></svg>
-      <div class="cat-name">Fashion</div>
-      <div class="cat-count">312 pieces</div>
-      <div class="cat-cta">Shop fashion <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+      <a class="cat-card" data-name="sports gear equipment" href="shop.html?category=sports">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="12"/><path d="M20 32h24M32 20v24"/></svg>
+        <div class="cat-name">Sports</div>
+        <div class="cat-count">89 pieces</div>
+        <div class="cat-cta">Shop Sports <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-    <a class="cat-card" style="--swatch:#B08D57" data-name="home living furniture decor" href="shop.html?category=home">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><path d="M12 28h40v20H12z"/><path d="M12 28l20-16 20 16"/></svg>
-      <div class="cat-name">Home &amp; Living</div>
-      <div class="cat-count">198 pieces</div>
-      <div class="cat-cta">Shop home &amp; living <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+      <a class="cat-card" data-name="men shirts trousers suits" href="shop.html?category=men">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><path d="M22 10l-10 6 4 8 6-3v29h20V21l6 3 4-8-10-6-5 5h-10z"/></svg>
+        <div class="cat-name">Men</div>
+        <div class="cat-count">276 pieces</div>
+        <div class="cat-cta">Shop Men <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-    <a class="cat-card" style="--swatch:#4A4F49" data-name="beauty skincare makeup" href="shop.html?category=beauty">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><circle cx="32" cy="24" r="8"/><path d="M24 40h16v12H24z"/></svg>
-      <div class="cat-name">Beauty</div>
-      <div class="cat-count">134 pieces</div>
-      <div class="cat-cta">Shop beauty <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+      <a class="cat-card" data-name="women dresses skirts" href="shop.html?category=women">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><path d="M26 8h12l4 8-6 4 2 30H24l2-30-6-4 4-8z"/><path d="M26 8c0 4 3 6 6 6s6-2 6-6"/></svg>
+        <div class="cat-name">Women</div>
+        <div class="cat-count">312 pieces</div>
+        <div class="cat-cta">Shop Women <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-    <a class="cat-card" style="--swatch:#7A3B3F" data-name="sports gear equipment" href="shop.html?category=sports">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="12"/><path d="M20 32h24M32 20v24"/></svg>
-      <div class="cat-name">Sports</div>
-      <div class="cat-count">89 pieces</div>
-      <div class="cat-cta">Shop sports <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+      <a class="cat-card" data-name="kids children" href="shop.html?category=kids">
+        <span class="swatch"></span>
+        <svg class="cat-icon" viewBox="0 0 64 64"><path d="M20 14l-8 5 3 7 5-3v25h24V23l5 3 3-7-8-5-4 4h-16z"/><circle cx="32" cy="10" r="4"/></svg>
+        <div class="cat-name">Kids</div>
+        <div class="cat-count">94 pieces</div>
+        <div class="cat-cta">Shop Kids <i class="fa-solid fa-arrow-right"></i></div>
+      </a>
 
-    <a class="cat-card" style="--swatch:#2F4538" data-name="men shirts trousers suits" href="shop.html?category=men">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><path d="M22 10l-10 6 4 8 6-3v29h20V21l6 3 4-8-10-6-5 5h-10z"/></svg>
-      <div class="cat-name">Men</div>
-      <div class="cat-count">276 pieces</div>
-      <div class="cat-cta">Shop men <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+    </div>
+  </section>
 
-    <a class="cat-card" style="--swatch:#7A3B3F" data-name="women dresses skirts" href="shop.html?category=women">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><path d="M26 8h12l4 8-6 4 2 30H24l2-30-6-4 4-8z"/><path d="M26 8c0 4 3 6 6 6s6-2 6-6"/></svg>
-      <div class="cat-name">Women</div>
-      <div class="cat-count">312 pieces</div>
-      <div class="cat-cta">Shop women <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: ecom_codenestnepal@gmail.com</p>
+        <p>Phone: +1 234 567 890</p>
+      </div>
 
-    <a class="cat-card" style="--swatch:#B08D57" data-name="kids children" href="shop.html?category=kids">
-      <span class="swatch"></span>
-      <svg class="cat-icon" viewBox="0 0 64 64"><path d="M20 14l-8 5 3 7 5-3v25h24V23l5 3 3-7-8-5-4 4h-16z"/><circle cx="32" cy="10" r="4"/></svg>
-      <div class="cat-name">Kids</div>
-      <div class="cat-count">94 pieces</div>
-      <div class="cat-cta">Shop kids <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    </a>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
 
-  </div>
-</section>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
 
+    <div class="footer-bottom">
+      <p>&copy; 2026 CodeNestNepal. All rights reserved.</p>
+    </div>
+  </footer>
 
+  <script src="eComjs.js"></script>
+  <script>
+    const cards = Array.from(document.querySelectorAll('.cat-card'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const i = cards.indexOf(entry.target);
+          entry.target.style.animationDelay = `${i * 0.05}s`;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    cards.forEach(c => observer.observe(c));
 
+    // Live search filter
+    const searchInput = document.getElementById('catSearch');
+    const countLabel = document.getElementById('catCount');
 
-
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open);
-  });
-
-  const cards = Array.from(document.querySelectorAll('.cat-card'));
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const i = cards.indexOf(entry.target);
-        entry.target.style.animationDelay = `${i * 0.05}s`;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  cards.forEach(c => observer.observe(c));
-
- // 1.0 Search bar and make it live
-  const searchInput = document.getElementById('catSearch');
-  const countLabel = document.getElementById('catCount');
-
-  searchInput.addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    let shown = 0;
-    cards.forEach(card => {
-      const haystack = (card.dataset.name + ' ' + card.querySelector('.cat-name').textContent).toLowerCase();
-      const match = haystack.includes(q);
-      card.classList.toggle('hidden', !match);
-      if (match) shown++;
-    });
-    countLabel.textContent = q ? `${shown} match${shown === 1 ? '' : 'es'}` : `${cards.length} shown`;
-  });
-</script>
-<script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        let shown = 0;
+        cards.forEach(card => {
+          const haystack = (card.dataset.name + ' ' + card.querySelector('.cat-name').textContent).toLowerCase();
+          const match = haystack.includes(q);
+          card.classList.toggle('hidden', !match);
+          if (match) shown++;
+        });
+        countLabel.textContent = q ? `${shown} match${shown === 1 ? '' : 'es'}` : `${cards.length} categories`;
+      });
+    }
+  </script>
 </body>
 </html>
