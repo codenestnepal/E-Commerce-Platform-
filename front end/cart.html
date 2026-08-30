@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="eComstyle.css">
+    <link rel="stylesheet" href="cart.css">
+
+    <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <nav class="nav-bar">
+    <!-- 1.) Company logo -->
+    <div class="lo-go"><a href="index.html">LOGO</a></div>
+
+    <!-- 2.) Navigation Section -->
+    <ul class="nav-link">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!-- 3.) Search bar -->
+    <div class="search-container">
+      <input type="text" placeholder="Search" id="SearchQuery">
+      <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+    <!-- 4.) Cart Icon -->
+    <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
+
+    <!-- 5.) Login/Sign up button -->
+    <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+  </nav>
+</header>
+
+<section class="cart-page">
+
+    <div class="cart-header">
+        <h1>Shopping Cart</h1>
+        <p>Review your items and proceed to checkout.</p>
+    </div>
+
+    <div class="cart-container">
+
+        <!-- Cart Items -->
+        <div class="cart-items">
+
+            <div class="cart-item">
+
+                <div class="item-image">
+                    <img src="product1.jpg" alt="Product">
+                </div>
+
+                <div class="item-details">
+                    <h3>Wireless Headphones</h3>
+                    <p>Premium sound quality with noise cancellation.</p>
+                    <span>$129.99</span>
+                </div>
+
+                <div class="item-quantity">
+                    <button>-</button>
+                    <input type="number" value="1">
+                    <button>+</button>
+                </div>
+
+                <div class="item-total">
+                    <h4>$129.99</h4>
+                </div>
+
+                <button class="remove-btn">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+
+            <div class="cart-item">
+
+                <div class="item-image">
+                    <img src="product2.jpg" alt="Product">
+                </div>
+
+                <div class="item-details">
+                    <h3>Smart Watch</h3>
+                    <p>Track fitness and stay connected everywhere.</p>
+                    <span>$199.99</span>
+                </div>
+
+                <div class="item-quantity">
+                    <button>-</button>
+                    <input type="number" value="1">
+                    <button>+</button>
+                </div>
+
+                <div class="item-total">
+                    <h4>$199.99</h4>
+                </div>
+
+                <button class="remove-btn">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+
+            <div class="cart-item">
+
+                <div class="item-image">
+                    <img src="product3.jpg" alt="Product">
+                </div>
+
+                <div class="item-details">
+                    <h3>Running Shoes</h3>
+                    <p>Comfortable and lightweight sports shoes.</p>
+                    <span>$89.99</span>
+                </div>
+
+                <div class="item-quantity">
+                    <button>-</button>
+                    <input type="number" value="1">
+                    <button>+</button>
+                </div>
+
+                <div class="item-total">
+                    <h4>$89.99</h4>
+                </div>
+
+                <button class="remove-btn">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Order Summary -->
+        <div class="cart-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$419.97</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>$15.00</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>$10.00</span>
+            </div>
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>$444.97</span>
+            </div>
+
+            <input type="text" placeholder="Enter Coupon Code">
+
+            <button class="coupon-btn">
+                Apply Coupon
+            </button>
+
+            <button class="checkout-btn">
+                Proceed to Checkout
+            </button>
+
+            <button class="continue-btn">
+                Continue Shopping
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
