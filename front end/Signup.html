@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nile - Create Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
@@ -12,7 +14,7 @@
 
     <div class="brand-section">
         <div class="brand-content">
-            <h1>NILE</h1>
+            <a href="index.html" class="brand-logo">NILE</a>
             <h2>Join the Nile Community</h2>
             <p>
                 Create your account to enjoy personalized shopping,
@@ -23,33 +25,30 @@
     </div>
 
     <div class="signup-section">
-
         <div class="signup-card">
-
             <h2>Create Account</h2>
             <p>Start your shopping journey today</p>
 
             <form>
-
                 <div class="name-row">
-                    <input type="text" placeholder="First Name" required>
-                    <input type="text" placeholder="Last Name" required>
+                    <input type="text" placeholder="First Name" required autocomplete="given-name">
+                    <input type="text" placeholder="Last Name" required autocomplete="family-name">
                 </div>
 
-                <input type="email" placeholder="Email Address" required>
+                <input type="email" placeholder="Email Address" required autocomplete="email">
 
-                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Password" required autocomplete="new-password">
 
-                <input type="password" placeholder="Confirm Password" required>
+                <input type="password" placeholder="Confirm Password" required autocomplete="new-password">
 
                 <label class="terms">
                     <input type="checkbox" required>
                     <span>
-                        I agree to the Terms & Conditions and Privacy Policy
+                        I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
                     </span>
                 </label>
 
-                <button type="submit">
+                <button type="submit" class="submit-btn">
                     Create Account
                 </button>
 
@@ -58,18 +57,15 @@
                 </div>
 
                 <button type="button" class="google-btn">
-                    Continue with Google
+                    <i class="fa-brands fa-google"></i> Continue with Google
                 </button>
 
                 <p class="login-link">
                     Already have an account?
                     <a href="login.html">Login</a>
                 </p>
-
             </form>
-
         </div>
-
     </div>
 
 </div>
