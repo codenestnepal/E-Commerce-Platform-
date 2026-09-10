@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women's Collection - NILE E-Commerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <link rel="stylesheet" href="category-page.css">
+  <style>
+    :root {
+      --cat-accent: #7c3aed;
+      --cat-accent-glow: rgba(124, 58, 237, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="nav-bar">
+      <!-- 1.) Company logo -->
+      <div class="lo-go"><a href="index.html">LOGO</a></div>
+
+      <!-- 2.) Navigation Section -->
+      <ul class="nav-link">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- 3.) Expanding Search bar -->
+      <div class="search-container">
+        <input type="text" placeholder="Search in Women's Collection..." id="SearchQuery">
+        <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <!-- 4.) Cart Icon -->
+      <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
+
+      <!-- 5.) Login/Sign up button -->
+      <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+    </nav>
+  </header>
+
+  <!-- Category Hero Section -->
+  <section class="category-hero">
+    <div class="hero-breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <a href="categories.html">Categories</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="current">Women's Collection</span>
+    </div>
+
+    <div class="category-hero-content">
+      <div class="category-badge">
+        <i class="fa-solid fa-gem"></i> 312 Women's Styles Online
+      </div>
+      <h1 class="category-title">Women's Contemporary Fashion & Chic Styles</h1>
+      <p class="category-desc">Graceful dresses, silk blouses, statement designer handbags, and artisan jewelry pieces curated for every occasion.</p>
+    </div>
+  </section>
+
+  <!-- Sticky Filter Bar -->
+  <div class="filter-bar-wrapper">
+    <div class="filter-bar">
+      <div class="filter-chips">
+        <button class="chip-btn active" onclick="filterProducts('All', this)">All</button><button class="chip-btn " onclick="filterProducts('Dresses', this)">Dresses</button><button class="chip-btn " onclick="filterProducts('Tops & Blouses', this)">Tops & Blouses</button><button class="chip-btn " onclick="filterProducts('Handbags & Totes', this)">Handbags & Totes</button><button class="chip-btn " onclick="filterProducts('Jewelry', this)">Jewelry</button><button class="chip-btn " onclick="filterProducts('Shoes & Heels', this)">Shoes & Heels</button>
+      </div>
+
+      <div class="sort-and-count">
+        <span class="product-count-badge" id="productCount">8 Products</span>
+        <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="title">Alphabetical (A-Z)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <section class="category-products-section">
+    <div class="products-grid-layout" id="productsGrid">
+      
+      <div class="cat-product-card" data-sub="Dresses" data-price="129" data-title="Silk Satin Wrap Evening Gown">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&auto=format&fit=crop&q=80" alt="Silk Satin Wrap Evening Gown" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Dresses</div>
+          <h3 class="card-title">Silk Satin Wrap Evening Gown</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 185 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$129</span>
+              <span class="old_price">$165</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Silk Satin Wrap Evening Gown', 129)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Handbags & Totes" data-price="89" data-title="Structured Vegan Leather Crossbody Bag">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">NEW</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=80" alt="Structured Vegan Leather Crossbody Bag" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Handbags & Totes</div>
+          <h3 class="card-title">Structured Vegan Leather Crossbody Bag</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 240 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$89</span>
+              <span class="old_price">$115</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Structured Vegan Leather Crossbody Bag', 89)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Jewelry" data-price="55" data-title="18K Gold Vermeil Dainty Pendant Necklace">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-27%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&auto=format&fit=crop&q=80" alt="18K Gold Vermeil Dainty Pendant Necklace" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Jewelry</div>
+          <h3 class="card-title">18K Gold Vermeil Dainty Pendant Necklace</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 320 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$55</span>
+              <span class="old_price">$75</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('18K Gold Vermeil Dainty Pendant Necklace', 55)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Tops & Blouses" data-price="68" data-title="French Cuff Pure Silk Button Blouse">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-23%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1551803091-e20673f15770?w=600&auto=format&fit=crop&q=80" alt="French Cuff Pure Silk Button Blouse" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Tops & Blouses</div>
+          <h3 class="card-title">French Cuff Pure Silk Button Blouse</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 142 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$68</span>
+              <span class="old_price">$88</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('French Cuff Pure Silk Button Blouse', 68)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Dresses" data-price="75" data-title="Tiered Summer Linen A-Line Dress">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&auto=format&fit=crop&q=80" alt="Tiered Summer Linen A-Line Dress" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Dresses</div>
+          <h3 class="card-title">Tiered Summer Linen A-Line Dress</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.7 • 198 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$75</span>
+              <span class="old_price">$95</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Tiered Summer Linen A-Line Dress', 75)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Shoes & Heels" data-price="98" data-title="Pointed Toe Classic Stiletto Pumps">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-25%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop&q=80" alt="Pointed Toe Classic Stiletto Pumps" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Shoes & Heels</div>
+          <h3 class="card-title">Pointed Toe Classic Stiletto Pumps</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 160 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$98</span>
+              <span class="old_price">$130</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Pointed Toe Classic Stiletto Pumps', 98)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Handbags & Totes" data-price="38" data-title="Everyday Minimalist Canvas Tote Bag">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">NEW</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&auto=format&fit=crop&q=80" alt="Everyday Minimalist Canvas Tote Bag" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Handbags & Totes</div>
+          <h3 class="card-title">Everyday Minimalist Canvas Tote Bag</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 290 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$38</span>
+              <span class="old_price">$50</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Everyday Minimalist Canvas Tote Bag', 38)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Jewelry" data-price="42" data-title="Freshwater Pearl Drop Huggie Earrings">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-28%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=80" alt="Freshwater Pearl Drop Huggie Earrings" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Jewelry</div>
+          <h3 class="card-title">Freshwater Pearl Drop Huggie Earrings</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 215 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$42</span>
+              <span class="old_price">$58</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Freshwater Pearl Drop Huggie Earrings', 42)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Promo Banner -->
+  <section class="category-promo-section">
+    <div class="promo-banner-card">
+      <div class="promo-content">
+        <h3>Save 25% OFF On All Women's Collection</h3>
+        <p>Elevate your style with contemporary runway looks. Use coupon code <strong>CHIC25</strong> at checkout.</p>
+      </div>
+      <a href="cart.html" class="promo-btn">Apply CHIC25 <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Browse Other Categories -->
+  <section class="browse-other-cats">
+    <div class="browse-heading">
+      <h3>Explore Other Categories</h3>
+      <p>Discover more curated collections across the NILE marketplace</p>
+    </div>
+    <div class="other-cats-grid">
+      
+        <a href="category-electronics.html" class="other-cat-item">
+          <i class="fa-solid fa-laptop-code"></i>
+          <span>Electronics</span>
+        </a>
+        <a href="category-fashion.html" class="other-cat-item">
+          <i class="fa-solid fa-shirt"></i>
+          <span>Fashion</span>
+        </a>
+        <a href="category-home.html" class="other-cat-item">
+          <i class="fa-solid fa-couch"></i>
+          <span>Home & Living</span>
+        </a>
+        <a href="category-beauty.html" class="other-cat-item">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Beauty & Care</span>
+        </a>
+        <a href="category-sports.html" class="other-cat-item">
+          <i class="fa-solid fa-dumbbell"></i>
+          <span>Sports & Fitness</span>
+        </a>
+        <a href="category-men.html" class="other-cat-item">
+          <i class="fa-solid fa-user-tie"></i>
+          <span>Men's Collection</span>
+        </a>
+        <a href="category-kids.html" class="other-cat-item">
+          <i class="fa-solid fa-child-reaching"></i>
+          <span>Kids & Baby</span>
+        </a>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: ecom_codenestnepal@gmail.com</p>
+        <p>Phone: +1 234 567 890</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NILE E-Commerce. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="cart-toast" id="cartToast">
+    <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.2rem;"></i>
+    <span id="toastMsg">Product added to your cart!</span>
+  </div>
+
+  <!-- Interactive Logic -->
+  <script>
+    function filterProducts(category, btn) {
+      const chips = document.querySelectorAll('.chip-btn');
+      chips.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.cat-product-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const sub = card.getAttribute('data-sub');
+        if (category === 'All' || sub === category) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('productCount').innerText = `${visibleCount} Products`;
+    }
+
+    function sortProducts(criteria) {
+      const grid = document.getElementById('productsGrid');
+      const cards = Array.from(grid.getElementsByClassName('cat-product-card'));
+
+      cards.sort((a, b) => {
+        if (criteria === 'price-low') {
+          return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+        } else if (criteria === 'price-high') {
+          return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+        } else if (criteria === 'title') {
+          return a.dataset.title.localeCompare(b.dataset.title);
+        }
+        return 0;
+      });
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    function toggleWishlist(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('active')) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        showToast('Saved to your wishlist!');
+      } else {
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+        showToast('Removed from your wishlist.');
+      }
+    }
+
+    function addToCart(title, price) {
+      showToast(`Added "${title}" to your cart!`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function searchbar() {
+      const query = document.getElementById("SearchQuery").value.trim().toLowerCase();
+      if (!query) return;
+
+      const cards = document.querySelectorAll('.cat-product-card');
+      let count = 0;
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const sub = card.getAttribute('data-sub').toLowerCase();
+        if (title.includes(query) || sub.includes(query)) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('productCount').innerText = `${count} Products Found`;
+    }
+  </script>
+</body>
+</html>

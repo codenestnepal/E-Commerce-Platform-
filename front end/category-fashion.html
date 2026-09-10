@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion - NILE E-Commerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <link rel="stylesheet" href="category-page.css">
+  <style>
+    :root {
+      --cat-accent: #e11d48;
+      --cat-accent-glow: rgba(225, 29, 72, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="nav-bar">
+      <!-- 1.) Company logo -->
+      <div class="lo-go"><a href="index.html">LOGO</a></div>
+
+      <!-- 2.) Navigation Section -->
+      <ul class="nav-link">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- 3.) Expanding Search bar -->
+      <div class="search-container">
+        <input type="text" placeholder="Search in Fashion..." id="SearchQuery">
+        <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <!-- 4.) Cart Icon -->
+      <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
+
+      <!-- 5.) Login/Sign up button -->
+      <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+    </nav>
+  </header>
+
+  <!-- Category Hero Section -->
+  <section class="category-hero">
+    <div class="hero-breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <a href="categories.html">Categories</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="current">Fashion</span>
+    </div>
+
+    <div class="category-hero-content">
+      <div class="category-badge">
+        <i class="fa-solid fa-shirt"></i> 312 Fashion Pieces in Stock
+      </div>
+      <h1 class="category-title">Signature Fashion & <span class="highlight">Runway Styles</span></h1>
+      <p class="category-desc">Discover timeless silhouettes, modern tailoring, seasonal streetwear, and elevated daily wardrobe essentials.</p>
+    </div>
+  </section>
+
+  <!-- Sticky Filter Bar -->
+  <div class="filter-bar-wrapper">
+    <div class="filter-bar">
+      <div class="filter-chips">
+        <button class="chip-btn active" onclick="filterProducts('All', this)">All</button><button class="chip-btn " onclick="filterProducts('Outerwear', this)">Outerwear</button><button class="chip-btn " onclick="filterProducts('Tops & Tees', this)">Tops & Tees</button><button class="chip-btn " onclick="filterProducts('Denim & Pants', this)">Denim & Pants</button><button class="chip-btn " onclick="filterProducts('Dresses', this)">Dresses</button><button class="chip-btn " onclick="filterProducts('Footwear', this)">Footwear</button>
+      </div>
+
+      <div class="sort-and-count">
+        <span class="product-count-badge" id="productCount">8 Products</span>
+        <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="title">Alphabetical (A-Z)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <section class="category-products-section">
+    <div class="products-grid-layout" id="productsGrid">
+      
+      <div class="cat-product-card" data-sub="Outerwear" data-price="159" data-title="Tailored Wool Blend Camel Overcoat">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&auto=format&fit=crop&q=80" alt="Tailored Wool Blend Camel Overcoat" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Outerwear</div>
+          <h3 class="card-title">Tailored Wool Blend Camel Overcoat</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 144 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$159</span>
+              <span class="old_price">$199</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Tailored Wool Blend Camel Overcoat', 159)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Tops & Tees" data-price="35" data-title="Organic Heavyweight Cotton Tee">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">NEW</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80" alt="Organic Heavyweight Cotton Tee" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Tops & Tees</div>
+          <h3 class="card-title">Organic Heavyweight Cotton Tee</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 290 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$35</span>
+              <span class="old_price">$45</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Organic Heavyweight Cotton Tee', 35)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Denim & Pants" data-price="79" data-title="Classic Straight-Fit Selvedge Denim">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-20%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1542272604-780c96856592?w=600&auto=format&fit=crop&q=80" alt="Classic Straight-Fit Selvedge Denim" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Denim & Pants</div>
+          <h3 class="card-title">Classic Straight-Fit Selvedge Denim</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.7 • 182 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$79</span>
+              <span class="old_price">$99</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Classic Straight-Fit Selvedge Denim', 79)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Outerwear" data-price="65" data-title="Minimalist Streetwear Pullover Hoodie">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop&q=80" alt="Minimalist Streetwear Pullover Hoodie" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Outerwear</div>
+          <h3 class="card-title">Minimalist Streetwear Pullover Hoodie</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 340 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$65</span>
+              <span class="old_price">$80</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Minimalist Streetwear Pullover Hoodie', 65)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Dresses" data-price="89" data-title="Flowy Floral Tiered Midi Dress">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-25%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&auto=format&fit=crop&q=80" alt="Flowy Floral Tiered Midi Dress" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Dresses</div>
+          <h3 class="card-title">Flowy Floral Tiered Midi Dress</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 115 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$89</span>
+              <span class="old_price">$120</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Flowy Floral Tiered Midi Dress', 89)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Footwear" data-price="95" data-title="Retro Clean Low Leather Sneakers">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-24%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=80" alt="Retro Clean Low Leather Sneakers" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Footwear</div>
+          <h3 class="card-title">Retro Clean Low Leather Sneakers</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 268 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$95</span>
+              <span class="old_price">$125</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Retro Clean Low Leather Sneakers', 95)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Outerwear" data-price="189" data-title="Distressed Vintage Bomber Jacket">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop&q=80" alt="Distressed Vintage Bomber Jacket" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Outerwear</div>
+          <h3 class="card-title">Distressed Vintage Bomber Jacket</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 88 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$189</span>
+              <span class="old_price">$230</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Distressed Vintage Bomber Jacket', 189)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Tops & Tees" data-price="55" data-title="Soft Ribbed Knit Autumn Sweater">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">NEW</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=600&auto=format&fit=crop&q=80" alt="Soft Ribbed Knit Autumn Sweater" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Tops & Tees</div>
+          <h3 class="card-title">Soft Ribbed Knit Autumn Sweater</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.7 • 195 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$55</span>
+              <span class="old_price">$70</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Soft Ribbed Knit Autumn Sweater', 55)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Promo Banner -->
+  <section class="category-promo-section">
+    <div class="promo-banner-card">
+      <div class="promo-content">
+        <h3>Save 25% OFF On All Fashion</h3>
+        <p>Refresh your wardrobe with new seasonal runway drops. Use coupon code <strong>RUNWAY25</strong> at checkout.</p>
+      </div>
+      <a href="cart.html" class="promo-btn">Apply RUNWAY25 <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Browse Other Categories -->
+  <section class="browse-other-cats">
+    <div class="browse-heading">
+      <h3>Explore Other Categories</h3>
+      <p>Discover more curated collections across the NILE marketplace</p>
+    </div>
+    <div class="other-cats-grid">
+      
+        <a href="category-electronics.html" class="other-cat-item">
+          <i class="fa-solid fa-laptop-code"></i>
+          <span>Electronics</span>
+        </a>
+        <a href="category-home.html" class="other-cat-item">
+          <i class="fa-solid fa-couch"></i>
+          <span>Home & Living</span>
+        </a>
+        <a href="category-beauty.html" class="other-cat-item">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Beauty & Care</span>
+        </a>
+        <a href="category-sports.html" class="other-cat-item">
+          <i class="fa-solid fa-dumbbell"></i>
+          <span>Sports & Fitness</span>
+        </a>
+        <a href="category-men.html" class="other-cat-item">
+          <i class="fa-solid fa-user-tie"></i>
+          <span>Men's Collection</span>
+        </a>
+        <a href="category-women.html" class="other-cat-item">
+          <i class="fa-solid fa-gem"></i>
+          <span>Women's Collection</span>
+        </a>
+        <a href="category-kids.html" class="other-cat-item">
+          <i class="fa-solid fa-child-reaching"></i>
+          <span>Kids & Baby</span>
+        </a>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: ecom_codenestnepal@gmail.com</p>
+        <p>Phone: +1 234 567 890</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NILE E-Commerce. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="cart-toast" id="cartToast">
+    <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.2rem;"></i>
+    <span id="toastMsg">Product added to your cart!</span>
+  </div>
+
+  <!-- Interactive Logic -->
+  <script>
+    function filterProducts(category, btn) {
+      const chips = document.querySelectorAll('.chip-btn');
+      chips.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.cat-product-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const sub = card.getAttribute('data-sub');
+        if (category === 'All' || sub === category) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('productCount').innerText = `${visibleCount} Products`;
+    }
+
+    function sortProducts(criteria) {
+      const grid = document.getElementById('productsGrid');
+      const cards = Array.from(grid.getElementsByClassName('cat-product-card'));
+
+      cards.sort((a, b) => {
+        if (criteria === 'price-low') {
+          return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+        } else if (criteria === 'price-high') {
+          return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+        } else if (criteria === 'title') {
+          return a.dataset.title.localeCompare(b.dataset.title);
+        }
+        return 0;
+      });
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    function toggleWishlist(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('active')) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        showToast('Saved to your wishlist!');
+      } else {
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+        showToast('Removed from your wishlist.');
+      }
+    }
+
+    function addToCart(title, price) {
+      showToast(`Added "${title}" to your cart!`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function searchbar() {
+      const query = document.getElementById("SearchQuery").value.trim().toLowerCase();
+      if (!query) return;
+
+      const cards = document.querySelectorAll('.cat-product-card');
+      let count = 0;
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const sub = card.getAttribute('data-sub').toLowerCase();
+        if (title.includes(query) || sub.includes(query)) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('productCount').innerText = `${count} Products Found`;
+    }
+  </script>
+</body>
+</html>

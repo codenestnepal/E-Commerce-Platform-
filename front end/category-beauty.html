@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty & Care - NILE E-Commerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <link rel="stylesheet" href="category-page.css">
+  <style>
+    :root {
+      --cat-accent: #db2777;
+      --cat-accent-glow: rgba(219, 39, 119, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="nav-bar">
+      <!-- 1.) Company logo -->
+      <div class="lo-go"><a href="index.html">LOGO</a></div>
+
+      <!-- 2.) Navigation Section -->
+      <ul class="nav-link">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- 3.) Expanding Search bar -->
+      <div class="search-container">
+        <input type="text" placeholder="Search in Beauty & Care..." id="SearchQuery">
+        <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <!-- 4.) Cart Icon -->
+      <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
+
+      <!-- 5.) Login/Sign up button -->
+      <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+    </nav>
+  </header>
+
+  <!-- Category Hero Section -->
+  <section class="category-hero">
+    <div class="hero-breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <a href="categories.html">Categories</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="current">Beauty & Care</span>
+    </div>
+
+    <div class="category-hero-content">
+      <div class="category-badge">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> 134 Beauty Essentials
+      </div>
+      <h1 class="category-title">Luxury Beauty, Skincare & Fragrances</h1>
+      <p class="category-desc">Indulge in botanical skincare formulas, radiant makeup collections, luxury perfumes, and revitalizing wellness care.</p>
+    </div>
+  </section>
+
+  <!-- Sticky Filter Bar -->
+  <div class="filter-bar-wrapper">
+    <div class="filter-bar">
+      <div class="filter-chips">
+        <button class="chip-btn active" onclick="filterProducts('All', this)">All</button><button class="chip-btn " onclick="filterProducts('Skincare', this)">Skincare</button><button class="chip-btn " onclick="filterProducts('Fragrances', this)">Fragrances</button><button class="chip-btn " onclick="filterProducts('Makeup', this)">Makeup</button><button class="chip-btn " onclick="filterProducts('Haircare', this)">Haircare</button><button class="chip-btn " onclick="filterProducts('Wellness', this)">Wellness</button>
+      </div>
+
+      <div class="sort-and-count">
+        <span class="product-count-badge" id="productCount">8 Products</span>
+        <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="title">Alphabetical (A-Z)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <section class="category-products-section">
+    <div class="products-grid-layout" id="productsGrid">
+      
+      <div class="cat-product-card" data-sub="Skincare" data-price="48" data-title="Vitamin C Radiance Glow Facial Serum">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&auto=format&fit=crop&q=80" alt="Vitamin C Radiance Glow Facial Serum" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Skincare</div>
+          <h3 class="card-title">Vitamin C Radiance Glow Facial Serum</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 410 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$48</span>
+              <span class="old_price">$60</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Vitamin C Radiance Glow Facial Serum', 48)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Fragrances" data-price="120" data-title="Oud & Velvet Rose Eau de Parfum (100ml)">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">NEW</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&auto=format&fit=crop&q=80" alt="Oud & Velvet Rose Eau de Parfum (100ml)" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Fragrances</div>
+          <h3 class="card-title">Oud & Velvet Rose Eau de Parfum (100ml)</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 195 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$120</span>
+              <span class="old_price">$150</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Oud & Velvet Rose Eau de Parfum (100ml)', 120)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Skincare" data-price="36" data-title="Hyaluronic Deep Hydration Cream">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-22%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&auto=format&fit=crop&q=80" alt="Hyaluronic Deep Hydration Cream" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Skincare</div>
+          <h3 class="card-title">Hyaluronic Deep Hydration Cream</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 320 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$36</span>
+              <span class="old_price">$46</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Hyaluronic Deep Hydration Cream', 36)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Makeup" data-price="28" data-title="Matte Velvet Longwear Lip Color Set">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-26%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&auto=format&fit=crop&q=80" alt="Matte Velvet Longwear Lip Color Set" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Makeup</div>
+          <h3 class="card-title">Matte Velvet Longwear Lip Color Set</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.7 • 210 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$28</span>
+              <span class="old_price">$38</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Matte Velvet Longwear Lip Color Set', 28)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Skincare" data-price="32" data-title="Detoxifying French Pink Clay Mask">
+        <div class="card-img-wrap">
+          <span class="badge-tag hot">HOT</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1567928815104-b7980ee5032e?w=600&auto=format&fit=crop&q=80" alt="Detoxifying French Pink Clay Mask" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Skincare</div>
+          <h3 class="card-title">Detoxifying French Pink Clay Mask</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 164 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$32</span>
+              <span class="old_price">$40</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Detoxifying French Pink Clay Mask', 32)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Haircare" data-price="29" data-title="Moroccan Argan Oil Intensive Hair Elixir">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-19%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1608248597359-009955761899?w=600&auto=format&fit=crop&q=80" alt="Moroccan Argan Oil Intensive Hair Elixir" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Haircare</div>
+          <h3 class="card-title">Moroccan Argan Oil Intensive Hair Elixir</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.9 • 285 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$29</span>
+              <span class="old_price">$36</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Moroccan Argan Oil Intensive Hair Elixir', 29)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Wellness" data-price="24" data-title="Natural Rose Quartz Facial Roller & Gua Sha">
+        <div class="card-img-wrap">
+          <span class="badge-tag new">NEW</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=600&auto=format&fit=crop&q=80" alt="Natural Rose Quartz Facial Roller & Gua Sha" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Wellness</div>
+          <h3 class="card-title">Natural Rose Quartz Facial Roller & Gua Sha</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.7 • 190 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$24</span>
+              <span class="old_price">$32</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Natural Rose Quartz Facial Roller & Gua Sha', 24)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-product-card" data-sub="Skincare" data-price="30" data-title="Invisible Mineral Sunscreen SPF 50">
+        <div class="card-img-wrap">
+          <span class="badge-tag ">-21%</span>
+          <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Save to Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&auto=format&fit=crop&q=80" alt="Invisible Mineral Sunscreen SPF 50" loading="lazy">
+        </div>
+        <div class="card-details">
+          <div class="card-cat-label">Skincare</div>
+          <h3 class="card-title">Invisible Mineral Sunscreen SPF 50</h3>
+          <div class="card-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating-count">(4.8 • 240 reviews)</span>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-box">
+              <span class="current-price">$30</span>
+              <span class="old_price">$38</span>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart('Invisible Mineral Sunscreen SPF 50', 30)">
+              <i class="fa-solid fa-cart-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Promo Banner -->
+  <section class="category-promo-section">
+    <div class="promo-banner-card">
+      <div class="promo-content">
+        <h3>Save 20% OFF On All Beauty & Care</h3>
+        <p>Glow from inside out with clean botanical cosmetics. Use coupon code <strong>GLOW20</strong> at checkout.</p>
+      </div>
+      <a href="cart.html" class="promo-btn">Apply GLOW20 <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Browse Other Categories -->
+  <section class="browse-other-cats">
+    <div class="browse-heading">
+      <h3>Explore Other Categories</h3>
+      <p>Discover more curated collections across the NILE marketplace</p>
+    </div>
+    <div class="other-cats-grid">
+      
+        <a href="category-electronics.html" class="other-cat-item">
+          <i class="fa-solid fa-laptop-code"></i>
+          <span>Electronics</span>
+        </a>
+        <a href="category-fashion.html" class="other-cat-item">
+          <i class="fa-solid fa-shirt"></i>
+          <span>Fashion</span>
+        </a>
+        <a href="category-home.html" class="other-cat-item">
+          <i class="fa-solid fa-couch"></i>
+          <span>Home & Living</span>
+        </a>
+        <a href="category-sports.html" class="other-cat-item">
+          <i class="fa-solid fa-dumbbell"></i>
+          <span>Sports & Fitness</span>
+        </a>
+        <a href="category-men.html" class="other-cat-item">
+          <i class="fa-solid fa-user-tie"></i>
+          <span>Men's Collection</span>
+        </a>
+        <a href="category-women.html" class="other-cat-item">
+          <i class="fa-solid fa-gem"></i>
+          <span>Women's Collection</span>
+        </a>
+        <a href="category-kids.html" class="other-cat-item">
+          <i class="fa-solid fa-child-reaching"></i>
+          <span>Kids & Baby</span>
+        </a>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: ecom_codenestnepal@gmail.com</p>
+        <p>Phone: +1 234 567 890</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NILE E-Commerce. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="cart-toast" id="cartToast">
+    <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.2rem;"></i>
+    <span id="toastMsg">Product added to your cart!</span>
+  </div>
+
+  <!-- Interactive Logic -->
+  <script>
+    function filterProducts(category, btn) {
+      const chips = document.querySelectorAll('.chip-btn');
+      chips.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.cat-product-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const sub = card.getAttribute('data-sub');
+        if (category === 'All' || sub === category) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('productCount').innerText = `${visibleCount} Products`;
+    }
+
+    function sortProducts(criteria) {
+      const grid = document.getElementById('productsGrid');
+      const cards = Array.from(grid.getElementsByClassName('cat-product-card'));
+
+      cards.sort((a, b) => {
+        if (criteria === 'price-low') {
+          return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+        } else if (criteria === 'price-high') {
+          return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+        } else if (criteria === 'title') {
+          return a.dataset.title.localeCompare(b.dataset.title);
+        }
+        return 0;
+      });
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    function toggleWishlist(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('active')) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        showToast('Saved to your wishlist!');
+      } else {
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+        showToast('Removed from your wishlist.');
+      }
+    }
+
+    function addToCart(title, price) {
+      showToast(`Added "${title}" to your cart!`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function searchbar() {
+      const query = document.getElementById("SearchQuery").value.trim().toLowerCase();
+      if (!query) return;
+
+      const cards = document.querySelectorAll('.cat-product-card');
+      let count = 0;
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const sub = card.getAttribute('data-sub').toLowerCase();
+        if (title.includes(query) || sub.includes(query)) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('productCount').innerText = `${count} Products Found`;
+    }
+  </script>
+</body>
+</html>
