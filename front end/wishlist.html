@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist - NILE E-Commerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <link rel="stylesheet" href="wishlist.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="nav-bar">
+      <!-- 1.) Company logo -->
+      <div class="lo-go"><a href="index.html">LOGO</a></div>
+
+      <!-- 2.) Navigation Section -->
+      <ul class="nav-link">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- 3.) Search bar -->
+      <div class="search-container">
+        <input type="text" placeholder="Search wishlist..." id="SearchQuery">
+        <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <!-- 4.) Wishlist Icon (Active) -->
+      <div class="wishlist"><a href="wishlist.html" style="color: tomato;" title="Wishlist"><i class="fa-solid fa-heart"></i></a></div>
+
+      <!-- 5.) Cart Icon -->
+      <div class="cart"><a href="cart.html" title="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i></a></div>
+
+      <!-- 6.) Login/Sign up button -->
+      <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+    </nav>
+  </header>
+
+  <!-- Wishlist Hero Section -->
+  <section class="wishlist-hero">
+    <div class="breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="current">My Wishlist</span>
+    </div>
+
+    <div class="wishlist-header-content">
+      <div class="wishlist-title-group">
+        <h1><i class="fa-solid fa-heart"></i> My Saved Wishlist</h1>
+        <p>Save your favorite items here and seamlessly move them to your shopping cart whenever you're ready.</p>
+      </div>
+
+      <div class="wishlist-actions-bar" id="wishlistActions">
+        <button class="move-all-btn" onclick="moveAllToCart()">
+          <i class="fa-solid fa-cart-arrow-down"></i> Move All to Cart
+        </button>
+        <button class="clear-all-btn" onclick="clearWishlist()">
+          <i class="fa-solid fa-trash-can"></i> Clear All
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wishlist Products Grid Section -->
+  <section class="wishlist-main-section">
+    <div class="wishlist-meta-bar" id="metaBar">
+      <div class="item-count-text">
+        Showing <span id="itemCount">4</span> saved items in your wishlist
+      </div>
+    </div>
+
+    <!-- Active Wishlist Grid -->
+    <div class="wishlist-grid" id="wishlistGrid">
+
+      <!-- Item 1 -->
+      <div class="wishlist-card" data-id="1" data-title="Wireless ANC Studio Pro Headphones" data-price="249">
+        <div class="card-img-container">
+          <span class="stock-pill in-stock">In Stock</span>
+          <button class="remove-btn" onclick="removeItem(this, 'Wireless ANC Studio Pro Headphones')" title="Remove from wishlist">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" alt="Studio Headphones">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Electronics</div>
+          <h3 class="card-product-title">Wireless ANC Studio Pro Headphones</h3>
+          <div class="card-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span>(4.9 • 520 reviews)</span>
+          </div>
+          <div class="card-price-row">
+            <span class="price">$249</span>
+            <span class="old-price">$299</span>
+          </div>
+          <div class="card-actions">
+            <button class="move-cart-btn" onclick="moveToCart(this, 'Wireless ANC Studio Pro Headphones', 249)">
+              <i class="fa-solid fa-cart-plus"></i> Move to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="wishlist-card" data-id="2" data-title="Tailored Wool Blend Camel Overcoat" data-price="159">
+        <div class="card-img-container">
+          <span class="stock-pill in-stock">In Stock</span>
+          <button class="remove-btn" onclick="removeItem(this, 'Tailored Wool Blend Camel Overcoat')" title="Remove from wishlist">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&auto=format&fit=crop&q=80" alt="Wool Overcoat">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Fashion</div>
+          <h3 class="card-product-title">Tailored Wool Blend Camel Overcoat</h3>
+          <div class="card-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span>(4.9 • 144 reviews)</span>
+          </div>
+          <div class="card-price-row">
+            <span class="price">$159</span>
+            <span class="old-price">$199</span>
+          </div>
+          <div class="card-actions">
+            <button class="move-cart-btn" onclick="moveToCart(this, 'Tailored Wool Blend Camel Overcoat', 159)">
+              <i class="fa-solid fa-cart-plus"></i> Move to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="wishlist-card" data-id="3" data-title="Nordic Minimalist 3-Seater Fabric Sofa" data-price="799">
+        <div class="card-img-container">
+          <span class="stock-pill low-stock">Only 2 Left</span>
+          <button class="remove-btn" onclick="removeItem(this, 'Nordic Minimalist 3-Seater Fabric Sofa')" title="Remove from wishlist">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&auto=format&fit=crop&q=80" alt="Nordic Sofa">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Home & Living</div>
+          <h3 class="card-product-title">Nordic Minimalist 3-Seater Fabric Sofa</h3>
+          <div class="card-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span>(4.9 • 86 reviews)</span>
+          </div>
+          <div class="card-price-row">
+            <span class="price">$799</span>
+            <span class="old-price">$950</span>
+          </div>
+          <div class="card-actions">
+            <button class="move-cart-btn" onclick="moveToCart(this, 'Nordic Minimalist 3-Seater Fabric Sofa', 799)">
+              <i class="fa-solid fa-cart-plus"></i> Move to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="wishlist-card" data-id="4" data-title="Oud & Velvet Rose Luxury Perfume" data-price="120">
+        <div class="card-img-container">
+          <span class="stock-pill in-stock">In Stock</span>
+          <button class="remove-btn" onclick="removeItem(this, 'Oud & Velvet Rose Luxury Perfume')" title="Remove from wishlist">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&auto=format&fit=crop&q=80" alt="Luxury Perfume">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Beauty</div>
+          <h3 class="card-product-title">Oud & Velvet Rose Luxury Perfume (100ml)</h3>
+          <div class="card-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span>(4.9 • 195 reviews)</span>
+          </div>
+          <div class="card-price-row">
+            <span class="price">$120</span>
+            <span class="old-price">$150</span>
+          </div>
+          <div class="card-actions">
+            <button class="move-cart-btn" onclick="moveToCart(this, 'Oud & Velvet Rose Luxury Perfume', 120)">
+              <i class="fa-solid fa-cart-plus"></i> Move to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty State Container -->
+    <div class="wishlist-empty-state" id="emptyState">
+      <div class="empty-icon-wrap">
+        <i class="fa-regular fa-heart"></i>
+      </div>
+      <h3>Your Wishlist is Empty</h3>
+      <p>You haven't saved any products to your wishlist yet. Explore our featured categories and tap the heart icon on items you love!</p>
+      <div class="empty-state-btns">
+        <a href="shop.html" class="shop-now-btn">
+          <i class="fa-solid fa-bag-shopping"></i> Start Shopping
+        </a>
+        <a href="categories.html" class="categories-link-btn">
+          <i class="fa-solid fa-layer-group"></i> Browse Categories
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommended For You Section -->
+  <section class="recommended-section">
+    <div class="rec-header">
+      <h2>Recommended For You</h2>
+      <p>Trending products picked to match your style and taste</p>
+    </div>
+
+    <div class="rec-grid">
+      <div class="wishlist-card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&auto=format&fit=crop&q=80" alt="Pro Smartphone">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Electronics</div>
+          <h3 class="card-product-title">Pro Smartphone Ultra 5G (256GB)</h3>
+          <div class="card-price-row">
+            <span class="price">$899</span>
+            <span class="old-price">$999</span>
+          </div>
+          <button class="move-cart-btn" onclick="addToCartDirect('Pro Smartphone Ultra 5G', 899)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="wishlist-card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80" alt="Running Shoes">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Sports</div>
+          <h3 class="card-product-title">AeroFoam Road Running Shoes</h3>
+          <div class="card-price-row">
+            <span class="price">$119</span>
+            <span class="old-price">$145</span>
+          </div>
+          <button class="move-cart-btn" onclick="addToCartDirect('AeroFoam Road Running Shoes', 119)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="wishlist-card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=80" alt="Crossbody Bag">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Women</div>
+          <h3 class="card-product-title">Structured Leather Crossbody Bag</h3>
+          <div class="card-price-row">
+            <span class="price">$89</span>
+            <span class="old-price">$115</span>
+          </div>
+          <button class="move-cart-btn" onclick="addToCartDirect('Structured Leather Crossbody Bag', 89)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="wishlist-card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&auto=format&fit=crop&q=80" alt="Glow Serum">
+        </div>
+        <div class="card-content">
+          <div class="card-cat">Beauty</div>
+          <h3 class="card-product-title">Vitamin C Radiance Glow Facial Serum</h3>
+          <div class="card-price-row">
+            <span class="price">$48</span>
+            <span class="old-price">$60</span>
+          </div>
+          <button class="move-cart-btn" onclick="addToCartDirect('Vitamin C Radiance Glow Facial Serum', 48)">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: ecom_codenestnepal@gmail.com</p>
+        <p>Phone: +1 234 567 890</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NILE E-Commerce. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Element -->
+  <div class="toast-notice" id="toastNotice">
+    <i class="fa-solid fa-circle-check" id="toastIcon" style="color: #10b981; font-size: 1.2rem;"></i>
+    <span id="toastText">Item updated!</span>
+  </div>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    function updateCounter() {
+      const remainingCards = document.querySelectorAll('#wishlistGrid .wishlist-card');
+      const count = remainingCards.length;
+      document.getElementById('itemCount').innerText = count;
+
+      if (count === 0) {
+        document.getElementById('wishlistGrid').style.display = 'none';
+        document.getElementById('metaBar').style.display = 'none';
+        document.getElementById('wishlistActions').style.display = 'none';
+        document.getElementById('emptyState').style.display = 'flex';
+      } else {
+        document.getElementById('wishlistGrid').style.display = 'grid';
+        document.getElementById('metaBar').style.display = 'flex';
+        document.getElementById('wishlistActions').style.display = 'flex';
+        document.getElementById('emptyState').style.display = 'none';
+      }
+    }
+
+    function removeItem(btn, title) {
+      const card = btn.closest('.wishlist-card');
+      card.classList.add('removing');
+      setTimeout(() => {
+        card.remove();
+        updateCounter();
+        showToast(`Removed "${title}" from your wishlist.`, 'notice');
+      }, 350);
+    }
+
+    function moveToCart(btn, title, price) {
+      const card = btn.closest('.wishlist-card');
+      card.classList.add('removing');
+      setTimeout(() => {
+        card.remove();
+        updateCounter();
+        showToast(`Moved "${title}" ($${price}) to your cart!`, 'success');
+      }, 350);
+    }
+
+    function addToCartDirect(title, price) {
+      showToast(`Added "${title}" to your cart!`, 'success');
+    }
+
+    function moveAllToCart() {
+      const cards = document.querySelectorAll('#wishlistGrid .wishlist-card');
+      if (cards.length === 0) return;
+
+      cards.forEach(card => card.classList.add('removing'));
+      setTimeout(() => {
+        cards.forEach(card => card.remove());
+        updateCounter();
+        showToast('All items have been moved to your shopping cart!', 'success');
+      }, 350);
+    }
+
+    function clearWishlist() {
+      const cards = document.querySelectorAll('#wishlistGrid .wishlist-card');
+      if (cards.length === 0) return;
+
+      if (confirm("Are you sure you want to clear your entire wishlist?")) {
+        cards.forEach(card => card.classList.add('removing'));
+        setTimeout(() => {
+          cards.forEach(card => card.remove());
+          updateCounter();
+          showToast('Wishlist has been cleared.', 'notice');
+        }, 350);
+      }
+    }
+
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toastNotice');
+      const icon = document.getElementById('toastIcon');
+      document.getElementById('toastText').innerText = msg;
+
+      if (type === 'success') {
+        toast.className = 'toast-notice show success';
+        icon.className = 'fa-solid fa-circle-check';
+        icon.style.color = '#10b981';
+      } else {
+        toast.className = 'toast-notice show';
+        icon.className = 'fa-solid fa-circle-info';
+        icon.style.color = '#ef4444';
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function searchbar() {
+      const query = document.getElementById("SearchQuery").value.trim().toLowerCase();
+      if (!query) {
+        const cards = document.querySelectorAll('#wishlistGrid .wishlist-card');
+        cards.forEach(c => c.style.display = 'flex');
+        return;
+      }
+
+      const cards = document.querySelectorAll('#wishlistGrid .wishlist-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        if (title.includes(query)) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('itemCount').innerText = visible;
+    }
+  </script>
+</body>
+</html>
