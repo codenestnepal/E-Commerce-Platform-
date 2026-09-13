@@ -11,7 +11,8 @@
       <header>
     <nav class="nav-bar">
         <!-- 1.) Company logo -->
-      <div class="lo-go"><a href="index.html">LOGO</a></div>
+      <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
 
       <!-- 2.) Navigation Section -->
       <ul class="nav-link">
@@ -29,8 +30,8 @@
       </div>
 
       <!-- 4.) Cart Icon -->
-      <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i></a></div>
-      <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
+      <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+      <div class="cart"><a href="cart.html" title="Shopping cart"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
 
       <!-- 5.) Login/Sign up button -->
       <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
@@ -41,6 +42,7 @@
 <section class="hero-section">
   <!-- Left content -->
   <div class="hero-content">
+    <p class="hero-eyebrow">New season, just in</p>
     <h1 class="animated-hero-title">
       Discover the Latest <span class="highlight-text">Fashion Trends</span>
     </h1>
@@ -54,6 +56,7 @@
 
   <!-- Right content image -->
   <div class="hero-image">
+    <span class="hero-tag">Up to 40% off</span>
     <img src="Images/FASHION.jpg" alt="Fashion Product/Trends">
   </div>
 </section>
@@ -62,11 +65,11 @@
 <section class="featured-categories">
   <h2>Featured Categories</h2>
   <div class="categories-container">
-    <div class="category-card" onclick="window.location.href='category-electronics.html'" style="cursor: pointer;">Electronics</div>
-    <div class="category-card" onclick="window.location.href='category-fashion.html'" style="cursor: pointer;">Fashion</div>
-    <div class="category-card" onclick="window.location.href='category-home.html'" style="cursor: pointer;">Home & Living</div>
-    <div class="category-card" onclick="window.location.href='category-beauty.html'" style="cursor: pointer;">Beauty</div>
-    <div class="category-card" onclick="window.location.href='category-sports.html'" style="cursor: pointer;">Sports</div>
+    <a class="category-card electronics" href="category-electronics.html"><span>Electronics</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    <a class="category-card fashion" href="category-fashion.html"><span>Fashion</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    <a class="category-card home" href="category-home.html"><span>Home &amp; Living</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    <a class="category-card beauty" href="category-beauty.html"><span>Beauty</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    <a class="category-card sports" href="category-sports.html"><span>Sports</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
   </div>
 </section>
 
@@ -76,33 +79,16 @@
   <h2>Best-Selling Products</h2>
   <div class="products-container">
     <!-- The product card -->
-    <div class="product-card">
-      <img src="product1.jpg" alt="Product Display">
-      <h3>Smartphone X</h3>
-      <p class="price">$499</p>
-      <button class="cart-btn">Add to Cart</button>
-    </div>
+    <article class="product-card">
+      <div class="product-image"><span class="product-badge">Save 15%</span><button class="product-wishlist" type="button" aria-label="Save Smartphone X"><i class="fa-regular fa-heart"></i></button><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Smartphone X"></div>
+      <div class="product-details"><p class="product-category">Electronics</p><h3>Smartphone X</h3><p class="rating"><i class="fa-solid fa-star"></i> 4.8 <span>(126)</span></p><div class="price-row"><p class="price">$499</p><del>$589</del></div><button class="cart-btn" data-product="Smartphone X">Add to Cart <i class="fa-solid fa-plus"></i></button></div>
+    </article>
 
-    <div class="product-card">
-      <img src="product2.jpg" alt="Product Display">
-      <h3>Stylish Jacket</h3>
-      <p class="price">$89</p>
-      <button class="cart-btn">Add to Cart</button>
-    </div>
+    <article class="product-card"><div class="product-image"><button class="product-wishlist" type="button" aria-label="Save Classic Overshirt"><i class="fa-regular fa-heart"></i></button><img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Classic overshirt"></div><div class="product-details"><p class="product-category">Fashion</p><h3>Classic Overshirt</h3><p class="rating"><i class="fa-solid fa-star"></i> 4.9 <span>(89)</span></p><div class="price-row"><p class="price">$89</p></div><button class="cart-btn" data-product="Classic Overshirt">Add to Cart <i class="fa-solid fa-plus"></i></button></div></article>
 
-    <div class="product-card">
-      <img src="product3.jpg" alt="Product Display">
-      <h3>Modern Sofa</h3>
-      <p class="price">$799</p>
-      <button class="cart-btn">Add to Cart</button>
-    </div>
+    <article class="product-card"><div class="product-image"><span class="product-badge">Popular</span><button class="product-wishlist" type="button" aria-label="Save Cloud Sofa"><i class="fa-regular fa-heart"></i></button><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Cloud sofa"></div><div class="product-details"><p class="product-category">Home &amp; Living</p><h3>Cloud Sofa</h3><p class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(64)</span></p><div class="price-row"><p class="price">$799</p><del>$899</del></div><button class="cart-btn" data-product="Cloud Sofa">Add to Cart <i class="fa-solid fa-plus"></i></button></div></article>
 
-    <div class="product-card">
-      <img src="product4.jpg" alt="Product Display">
-      <h3>Beauty Kit</h3>
-      <p class="price">$59</p>
-      <button class="cart-btn">Add to Cart</button>
-    </div>
+    <article class="product-card"><div class="product-image"><button class="product-wishlist" type="button" aria-label="Save Glow Ritual Set"><i class="fa-regular fa-heart"></i></button><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Glow Ritual beauty set"></div><div class="product-details"><p class="product-category">Beauty</p><h3>Glow Ritual Set</h3><p class="rating"><i class="fa-solid fa-star"></i> 4.8 <span>(112)</span></p><div class="price-row"><p class="price">$59</p></div><button class="cart-btn" data-product="Glow Ritual Set">Add to Cart <i class="fa-solid fa-plus"></i></button></div></article>
   </div>
 </section>
 

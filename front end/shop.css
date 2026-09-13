@@ -516,3 +516,11 @@ html {
 .wishlist:hover a {
   transform: scale(1.15);
 }
+
+/* Catalog purchase controls */
+.shop-card { border: 1px solid #e8e9eb; border-radius: 8px; }
+.shop-card h4 { padding-top: 16px; }
+.shop-card p { color: tomato; font-size: 1.05rem; font-weight: 700; }
+.shop-card .cart-btn { margin: 14px auto 18px; display: flex; align-items: center; justify-content: space-between; border-radius: 4px; font-weight: 700; }
+.shop-card img { transition: transform .3s ease; }
+.shop-card:hover img { transform: scale(1.04); }
