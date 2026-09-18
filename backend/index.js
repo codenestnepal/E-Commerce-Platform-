@@ -2,12 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const connectContactDB = require("./config/contactDb");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
+const contactRoutes = require("./routes/contact");
 
 dotenv.config();
 connectDB();
-
+connectContactDB();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -21,6 +23,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
+app.use("/contact", contactRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
