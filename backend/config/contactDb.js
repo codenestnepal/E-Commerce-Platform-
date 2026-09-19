@@ -1,20 +1,17 @@
 const mongoose = require('mongoose');
 
 const connectContactDB = async () => {
-    try {
-        
-        if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
-            console.log('Contact features initialized using primary MongoDB connection.');
-            return;
-        }
-
-        if (process.env.CONTACT_MONGO_URI) {
-            await mongoose.connect(process.env.CONTACT_MONGO_URI);
-            console.log('Contact MongoDB connected successfully.');
-        }
-    } catch (error) {
-        console.warn('Contact DB Notice:', error.message);
+  try {
+    const uri = process.env.CONTACT_MONGO_URI || process.env.MONGO_URI;
+    if (!uri) {
+      console.warn('No URI found for Contact MongoDB');
+      return;
     }
+    const connection = await mongoose.connect(uri);
+    console.log(`Contact MongoDB Connected: ${connection.connection.host}`);
+  } catch (error) {
+    console.error(`Contact DB Error: ${error.message}`);
+    console.warn('Server will continue running without Contact DB.');
+  }
 };
-
 module.exports = connectContactDB;
