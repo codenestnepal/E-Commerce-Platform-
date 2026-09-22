@@ -2,11 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
-const connectContactDB = require("./config/contactDb");
+const { connectContactDB } = require("./config/contactDb");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const contactRoutes = require("./routes/contact");
 const newsletterRoutes = require("./routes/newsletterRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 dotenv.config();
 connectDB();
@@ -26,6 +27,7 @@ app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/contact", contactRoutes);
 app.use("/api/v1/newsletter", newsletterRoutes);
+app.use("/api/v1/categories", categoryRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

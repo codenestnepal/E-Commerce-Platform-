@@ -1,17 +1,23 @@
 const mongoose = require('mongoose');
 
+let contactConnection = null;
+
 const connectContactDB = async () => {
   try {
     const uri = process.env.CONTACT_MONGO_URI || process.env.MONGO_URI;
     if (!uri) {
-      console.warn('No URI found for Contact MongoDB');
+      console.warn('[ContactDB] No URI found. Skipping Contact MongoDB connection.');
       return;
     }
-    const connection = await mongoose.connect(uri);
-    console.log(`Contact MongoDB Connected: ${connection.connection.host}`);
+    // Use a separate mongoose connection instance (not the global one)
+    contactConnection = await mongoose.createConnection(uri).asPromise();
+    console.log(`[ContactDB] Connected: ${contactConnection.host}`);
   } catch (error) {
-    console.error(`Contact DB Error: ${error.message}`);
-    console.warn('Server will continue running without Contact DB.');
+    console.error(`[ContactDB] Connection failed: ${error.message}`);
+    console.warn('[ContactDB] Server will continue running without Contact DB.');
   }
 };
-module.exports = connectContactDB;
+
+const getContactConnection = () => contactConnection;
+
+module.exports = { connectContactDB, getContactConnection };
