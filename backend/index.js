@@ -10,6 +10,7 @@ const newsletterRoutes = require("./routes/newsletterRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const wishlistRoutes = require("./routes/wishlistRouter");
+const searchRoutes = require("./routes/searchRoutes");
 
 dotenv.config();
 connectDB();
@@ -32,6 +33,7 @@ app.use("/api/v1/newsletter", newsletterRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/wishlist", wishlistRoutes);
+app.use("/api/v1/search",searchRoutes)
 
 
 app.listen(PORT, () => {
