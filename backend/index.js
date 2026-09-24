@@ -11,6 +11,7 @@ const categoryRoutes = require("./routes/categoryRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const wishlistRoutes = require("./routes/wishlistRouter");
 const searchRoutes = require("./routes/searchRoutes");
+const categorySearchRoutes = require("./routes/categorySearchRoutes");
 
 dotenv.config();
 connectDB();
@@ -20,7 +21,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));;
 
 app.get("/", (req, res) => {
   res.send("Backend is running!");
@@ -33,7 +34,8 @@ app.use("/api/v1/newsletter", newsletterRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/wishlist", wishlistRoutes);
-app.use("/api/v1/search",searchRoutes)
+app.use("/api",searchRoutes);
+app.use("/api",categorySearchRoutes);
 
 
 app.listen(PORT, () => {
