@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vendor Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/frontend/Vendor Portal/vendor.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">VENDOR<span>.</span>PORTAL</div>
+    <nav id="nav"></nav>
+    <button class="logout" onclick="logout()">⏻ <span class="label">Logout</span></button>
+  </aside>
+
+  <main class="main">
+
+    <section id="dashboard" class="page active">
+      <h1>Dashboard</h1>
+      <p class="subtitle">Here's how your store is doing today.</p>
+      <div class="cards">
+        <div class="card"><h3>Total products</h3><p id="statProducts">0</p></div>
+        <div class="card"><h3>Pending orders</h3><p id="statOrders">0</p></div>
+        <div class="card"><h3>Total sales</h3><p id="statSales">0.00</p></div>
+        <div class="card"><h3>Notifications</h3><p id="statNotifs">0</p></div>
+      </div>
+    </section>
+
+    <section id="products" class="page">
+      <h1>Products</h1>
+      <p class="subtitle">Everything you're currently selling.</p>
+      <div class="toolbar">
+        <button class="btn" onclick="toggleForm('productForm')">+ Add product</button>
+      </div>
+      <div class="form-row" id="productForm">
+        <input id="p-name" placeholder="Product name">
+        <input id="p-price" placeholder="Price ()" type="number">
+        <input id="p-stock" placeholder="Stock qty" type="number">
+        <button class="btn" onclick="addProduct()">Save</button>
+      </div>
+      <div class="panel"><table><thead><tr><th>Name</th><th>Price</th><th>Stock</th><th></th></tr></thead>
+        <tbody id="productList"></tbody></table></div>
+    </section>
+
+    <section id="categories" class="page">
+      <h1>Categories</h1>
+      <p class="subtitle">Group products so shoppers can browse.</p>
+      <div class="toolbar">
+        <button class="btn" onclick="toggleForm('categoryForm')">+ Add category</button>
+      </div>
+      <div class="form-row" id="categoryForm">
+        <input id="c-name" placeholder="Category name">
+        <button class="btn" onclick="addCategory()">Save</button>
+      </div>
+      <div class="panel"><table><thead><tr><th>Name</th><th>Products</th><th></th></tr></thead>
+        <tbody id="categoryList"></tbody></table></div>
+    </section>
+
+    <section id="inventory" class="page">
+      <h1>Inventory</h1>
+      <p class="subtitle">Stock levels pulled from your product list.</p>
+      <div class="panel"><table><thead><tr><th>Product</th><th>Stock</th><th>Status</th></tr></thead>
+        <tbody id="inventoryList"></tbody></table></div>
+    </section>
+
+    <section id="orders" class="page">
+      <h1>Orders</h1>
+      <p class="subtitle">Recent customer orders.</p>
+      <div class="panel"><table><thead><tr><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody id="orderList"></tbody></table></div>
+    </section>
+
+    <section id="sales" class="page">
+      <h1>Sales & Revenue</h1>
+      <p class="subtitle">A quick read on how revenue is trending.</p>
+      <div class="cards">
+        <div class="card"><h3>This week</h3><p>0.00</p></div>
+        <div class="card"><h3>This month</h3><p>0.00</p></div>
+        <div class="card"><h3>Avg. order value</h3><p>0.00</p></div>
+      </div>
+    </section>
+
+    <section id="promotions" class="page">
+      <h1>Promotions</h1>
+      <p class="subtitle">Discounts currently running on your store.</p>
+      <div class="toolbar">
+        <button class="btn" onclick="toggleForm('promoForm')">+ Add promotion</button>
+      </div>
+      <div class="form-row" id="promoForm">
+        <input id="promo-name" placeholder="Promotion name">
+        <input id="promo-discount" placeholder="Discount %" type="number">
+        <button class="btn" onclick="addPromotion()">Save</button>
+      </div>
+      <div class="panel"><table><thead><tr><th>Name</th><th>Discount</th><th></th></tr></thead>
+        <tbody id="promoList"></tbody></table></div>
+    </section>
+
+    <section id="profile" class="page">
+      <h1>Store Management</h1>
+      <p class="subtitle">This is what customers see on your store page.</p>
+      <div class="panel grid-2">
+        <div class="field"><label>Store name</label><input id="pr-store" placeholder="e.g. Casa Verde Goods"></div>
+        <div class="field"><label>Contact email</label><input id="pr-email" placeholder="you@store.com"></div>
+        <div class="field"><label>Phone</label><input id="pr-phone" placeholder="+63 9xx xxx xxxx"></div>
+        <div class="field"><label>Address</label><input id="pr-address" placeholder="Store address"></div>
+        <div class="field" style="grid-column:1/-1;"><label>Description</label><textarea id="pr-desc" rows="3" placeholder="Tell customers what makes your store worth visiting."></textarea></div>
+      </div>
+      <button class="btn" style="margin-top:14px;" onclick="saveProfile()">Save changes</button>
+    </section>
+
+    <section id="notifications" class="page">
+      <h1>Notifications</h1>
+      <p class="subtitle">Updates about your store.</p>
+      <div class="panel" id="notifPanel"></div>
+    </section>
+
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="/frontend/Vendor Portal/vendor.js"></script>
+</body>
+</html>
