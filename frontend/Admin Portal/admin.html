@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/frontend/Admin Portal/admin.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">ADMIN<span>.</span>PORTAL</div>
+    <nav id="nav"></nav>
+    <button class="logout" data-action="logout">⏻ <span class="label">Logout</span></button>
+  </aside>
+
+  <main class="main">
+
+    <section id="dashboard" class="page active">
+      <h1>Dashboard</h1>
+      <p class="subtitle">A snapshot of the whole marketplace.</p>
+      <div class="cards" id="dashCards"></div>
+      <h2>Needs your attention</h2>
+      <div class="panel" id="attentionPanel"></div>
+    </section>
+
+    <section id="users" class="page">
+      <h1>Users</h1>
+      <p class="subtitle">Customers and staff accounts on the platform.</p>
+      <div class="panel table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th></th></tr></thead>
+        <tbody id="userList"></tbody></table></div>
+    </section>
+
+    <section id="vendors" class="page">
+      <h1>Vendors</h1>
+      <p class="subtitle">Review applications and manage store access.</p>
+      <div class="toolbar">
+        <select id="vendorFilter" class="select" data-change="vendorFilter">
+          <option value="all">All vendors</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+          <option value="suspended">Suspended</option>
+        </select>
+      </div>
+      <div class="panel table-wrap"><table><thead><tr><th>Store</th><th>Owner</th><th>Email</th><th>Status</th><th></th></tr></thead>
+        <tbody id="vendorList"></tbody></table></div>
+    </section>
+
+    <section id="products" class="page">
+      <h1>Products & Categories</h1>
+      <p class="subtitle">Approve vendor products before they go live.</p>
+      <div class="panel table-wrap"><table><thead><tr><th>Product</th><th>Vendor</th><th>Category</th><th>Price</th><th>Status</th><th></th></tr></thead>
+        <tbody id="productList"></tbody></table></div>
+
+      <h2>Categories</h2>
+      <div class="toolbar">
+        <button class="btn" data-action="toggleForm" data-id="categoryForm">+ Add category</button>
+      </div>
+      <div class="form-row" id="categoryForm">
+        <input id="c-name" placeholder="Category name" maxlength="40">
+        <button class="btn" data-action="addCategory">Save</button>
+      </div>
+      <div class="panel table-wrap"><table><thead><tr><th>Name</th><th>Products</th><th></th></tr></thead>
+        <tbody id="categoryList"></tbody></table></div>
+    </section>
+
+    <section id="orders" class="page">
+      <h1>Orders & Payments</h1>
+      <p class="subtitle">Track every order and its payment status.</p>
+      <div class="panel table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Vendor</th><th>Amount</th><th>Order status</th><th>Payment</th><th></th></tr></thead>
+        <tbody id="orderList"></tbody></table></div>
+    </section>
+
+    <section id="commission" class="page">
+      <h1>Commission</h1>
+      <p class="subtitle">Set the platform cut taken from paid orders.</p>
+      <div class="panel">
+        <div class="field" style="max-width:260px;"><label for="defaultRate">Default commission rate (%)</label>
+          <input id="defaultRate" type="number" min="0" max="100" step="0.1"></div>
+        <button class="btn" data-action="saveCommission">Save rate</button>
+      </div>
+      <h2>By vendor</h2>
+      <div class="panel table-wrap"><table><thead><tr><th>Store</th><th>Rate (%)</th><th>Paid sales</th><th>Commission</th></tr></thead>
+        <tbody id="commissionList"></tbody></table></div>
+    </section>
+
+    <section id="coupons" class="page">
+      <h1>Coupons & Promotions</h1>
+      <p class="subtitle">Platform-wide discount codes.</p>
+      <div class="toolbar">
+        <button class="btn" data-action="toggleForm" data-id="couponForm">+ Add coupon</button>
+      </div>
+      <div class="form-row" id="couponForm">
+        <input id="cp-code" placeholder="Code (e.g. WELCOME10)" maxlength="20">
+        <input id="cp-discount" placeholder="Discount %" type="number" min="1" max="100">
+        <button class="btn" data-action="addCoupon">Save</button>
+      </div>
+      <div class="panel table-wrap"><table><thead><tr><th>Code</th><th>Discount</th><th>Status</th><th></th></tr></thead>
+        <tbody id="couponList"></tbody></table></div>
+    </section>
+
+    <section id="reports" class="page">
+      <h1>Reports & Analytics</h1>
+      <p class="subtitle">Revenue, orders and top-performing vendors.</p>
+      <div class="cards" id="reportCards"></div>
+      <h2>Orders by status</h2>
+      <div class="panel" id="statusBars"></div>
+      <h2>Top vendors</h2>
+      <div class="panel table-wrap"><table><thead><tr><th>Store</th><th>Orders</th><th>Paid sales</th></tr></thead>
+        <tbody id="topVendors"></tbody></table></div>
+    </section>
+
+    <section id="reviews" class="page">
+      <h1>Reviews & Complaints</h1>
+      <p class="subtitle">Moderate customer feedback.</p>
+      <div class="panel table-wrap"><table><thead><tr><th>Type</th><th>From</th><th>About</th><th>Message</th><th>Status</th><th></th></tr></thead>
+        <tbody id="reviewList"></tbody></table></div>
+    </section>
+
+    <section id="announcements" class="page">
+      <h1>Notifications & Announcements</h1>
+      <p class="subtitle">Send updates to users and vendors.</p>
+      <div class="toolbar">
+        <button class="btn" data-action="toggleForm" data-id="annForm">+ New announcement</button>
+      </div>
+      <div class="form-row" id="annForm">
+        <input id="an-title" placeholder="Title" maxlength="80">
+        <input id="an-msg" placeholder="Message" maxlength="240">
+        <select id="an-aud" class="select">
+          <option value="Everyone">Everyone</option>
+          <option value="Users">Users</option>
+          <option value="Vendors">Vendors</option>
+        </select>
+        <button class="btn" data-action="addAnnouncement">Send</button>
+      </div>
+      <div class="panel" id="annPanel"></div>
+    </section>
+
+    <section id="settings" class="page">
+      <h1>System Settings</h1>
+      <p class="subtitle">Platform-wide configuration.</p>
+      <div class="panel grid-2">
+        <div class="field"><label for="st-name">Site name</label><input id="st-name"></div>
+        <div class="field"><label for="st-email">Support email</label><input id="st-email" type="email"></div>
+        <div class="field"><label for="st-vreg">Vendor registration</label>
+          <select id="st-vreg" class="select full"><option value="open">Open</option><option value="closed">Closed</option></select></div>
+        <div class="field"><label for="st-maint">Maintenance mode</label>
+          <select id="st-maint" class="select full"><option value="off">Off</option><option value="on">On</option></select></div>
+      </div>
+      <button class="btn" style="margin-top:14px;" data-action="saveSettings">Save changes</button>
+    </section>
+
+    <section id="roles" class="page">
+      <h1>Roles & Permissions</h1>
+      <p class="subtitle">Decide what each admin role can do.</p>
+      <div class="toolbar">
+        <button class="btn" data-action="toggleForm" data-id="roleForm">+ Add role</button>
+      </div>
+      <div class="form-row" id="roleForm">
+        <input id="r-name" placeholder="Role name" maxlength="30">
+        <button class="btn" data-action="addRole">Save</button>
+      </div>
+      <div class="panel table-wrap"><table id="roleTable"></table></div>
+    </section>
+
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="/frontend/Admin Portal/admin.js"></script>
+</body>
+</html>
