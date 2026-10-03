@@ -1,27 +1,25 @@
 //Logic for Login/Signup page
 
 function searchbar() {
-  const query = document.getElementById("SearchQuery").value;
+  const searchInput = document.getElementById("SearchQuery");
+  const query = searchInput ? searchInput.value.trim() : '';
+  
   if(query) {
-    alert("Searching for: " + query);
-    // Later you can connect this to backend or product search
+    SearchManager.performSearch(query);
   } else {
-    alert("Please enter a search term.");
+    showNotification("Please enter a search term.", 'warning');
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cartCount = Number(localStorage.getItem("nileCartCount") || 0);
-  const wishlistCount = Number(localStorage.getItem("nileWishlistCount") || 0);
-
-  const updateCounts = () => {
-    document.querySelectorAll(".cart-count").forEach((item) => item.textContent = localStorage.getItem("nileCartCount") || 0);
-    document.querySelectorAll(".wishlist-count").forEach((item) => item.textContent = localStorage.getItem("nileWishlistCount") || 0);
-  };
-
-  localStorage.setItem("nileCartCount", cartCount);
-  localStorage.setItem("nileWishlistCount", wishlistCount);
-  updateCounts();
+  if (AuthManager.isLoggedIn()) {
+    updateDisplayCounts();
+  } else {
+    const cartCount = Number(localStorage.getItem("nileCartCount") || 0);
+    const wishlistCount = Number(localStorage.getItem("nileWishlistCount") || 0);
+    document.querySelectorAll(".cart-count").forEach((item) => item.textContent = cartCount);
+    document.querySelectorAll(".wishlist-count").forEach((item) => item.textContent = wishlistCount);
+  }
 
   const catalogImages = {
     Smartphone: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=85",
@@ -53,13 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
       image.src = catalogImages[title];
       image.alt = title;
     }
-    if (title && !card.querySelector("button")) {
-      const action = document.createElement("button");
-      action.className = "cart-btn";
-      action.dataset.product = title;
-      action.innerHTML = 'Add to Cart <i class="fa-solid fa-plus"></i>';
-      card.append(action);
-    }
   });
 
   document.querySelector(".menu-toggle")?.addEventListener("click", () => {
@@ -69,23 +60,94 @@ document.addEventListener("DOMContentLoaded", () => {
     button.setAttribute("aria-expanded", isOpen);
   });
 
-  document.querySelectorAll(".cart-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-      const nextCount = Number(localStorage.getItem("nileCartCount") || 0) + 1;
-      localStorage.setItem("nileCartCount", nextCount);
-      updateCounts();
-      button.innerHTML = 'Added <i class="fa-solid fa-check"></i>';
-      setTimeout(() => { button.innerHTML = 'Add to Cart <i class="fa-solid fa-plus"></i>'; }, 1300);
-    });
+  document.addEventListener("click", async (e) => {
+    const cartBtn = e.target.closest(".cart-btn.add-to-cart-btn, .shop-card .cart-btn");
+    if (cartBtn && !cartBtn.classList.contains("move-to-cart")) {
+      if (!AuthManager.isLoggedIn()) {
+        showNotification("Please login to add items to cart", "warning");
+        setTimeout(() => (window.location.href = "login.html"), 1200);
+        return;
+      }
+      const productId = cartBtn.dataset.productId;
+      const original = cartBtn.innerHTML;
+      if (productId) {
+        try {
+          cartBtn.disabled = true;
+          await ApiService.addToCart(productId, 1);
+          showNotification("Added to cart!", "success");
+          updateDisplayCounts();
+        } catch (err) {
+          showNotification(err.message || "Failed to add to cart", "error");
+          cartBtn.disabled = false;
+          return;
+        }
+      }
+      cartBtn.innerHTML = 'Added <i class="fa-solid fa-check"></i>';
+      setTimeout(() => { cartBtn.innerHTML = original; cartBtn.disabled = false; }, 1300);
+      return;
+    }
+
+    const wishBtn = e.target.closest(".product-wishlist");
+    if (wishBtn) {
+      if (!AuthManager.isLoggedIn()) {
+        showNotification("Please login to save items", "warning");
+        return;
+      }
+      const productId = wishBtn.dataset.productId;
+      const willSave = !wishBtn.classList.contains("is-saved");
+      wishBtn.classList.toggle("is-saved", willSave);
+      wishBtn.querySelector("i").className = willSave ? "fa-solid fa-heart" : "fa-regular fa-heart";
+      if (!productId) return;
+      try {
+        if (willSave) {
+          await ApiService.addToWishlist(productId);
+        } else {
+          const list = await ApiService.getWishlist();
+          const entry = (Array.isArray(list) ? list : []).find((w) => w.product && w.product._id === productId);
+          if (entry) await ApiService.removeFromWishlist(entry._id);
+        }
+        updateDisplayCounts();
+      } catch (err) {
+        showNotification(err.message || "Failed to update wishlist", "error");
+        wishBtn.classList.toggle("is-saved", !willSave); 
+        wishBtn.querySelector("i").className = !willSave ? "fa-solid fa-heart" : "fa-regular fa-heart";
+      }
+    }
   });
 
-  document.querySelectorAll(".product-wishlist").forEach((button) => {
-    button.addEventListener("click", () => {
-      const isSaved = button.classList.toggle("is-saved");
-      button.querySelector("i").className = isSaved ? "fa-solid fa-heart" : "fa-regular fa-heart";
-      const amount = Number(localStorage.getItem("nileWishlistCount") || 0) + (isSaved ? 1 : -1);
-      localStorage.setItem("nileWishlistCount", Math.max(amount, 0));
-      updateCounts();
+  const newsletterForm = document.getElementById("newsletterForm");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("newsletterEmail")?.value.trim();
+      if (!email || !validateEmail(email)) return showNotification("Please enter a valid email", "error");
+      const btn = newsletterForm.querySelector('button[type="submit"]');
+      const original = btn.textContent;
+      try {
+        btn.disabled = true;
+        btn.textContent = "Subscribing...";
+        await ApiService.subscribeNewsletter(email);
+        showNotification("Successfully subscribed!", "success");
+        newsletterForm.reset();
+      } catch (err) {
+        showNotification(err.message || "Failed to subscribe", "error");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
     });
-  });
+  }
 });
+
+async function updateDisplayCounts() {
+  if (!AuthManager.isLoggedIn()) return;
+  try {
+    const [cart, wish] = await Promise.all([ApiService.getCart(), ApiService.getWishlist()]);
+    const cartCount = Array.isArray(cart) ? cart.length : 0;
+    const wishCount = Array.isArray(wish) ? wish.length : 0;
+    document.querySelectorAll(".cart-count").forEach((el) => (el.textContent = cartCount));
+    document.querySelectorAll(".wishlist-count").forEach((el) => (el.textContent = wishCount));
+  } catch (error) {
+    console.error("Failed to update counts:", error);
+  }
+}

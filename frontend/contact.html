@@ -94,18 +94,12 @@
 
         <h2>Send Message</h2>
 
-        <form class="contact-form">
-
-            <input type="text" placeholder="Full Name" required>
-
-            <input type="email" placeholder="Email Address" required>
-
-            <input type="text" placeholder="Subject" required>
-
-            <textarea rows="6" placeholder="Your Message" required></textarea>
-
-            <button type="submit">Send Message</button>
-
+        <form id="contactForm" class="contact-form">
+          <input type="text" id="contactName" placeholder="Full Name" required>
+          <input type="email" id="contactEmail" placeholder="Email Address" required>
+          <input type="text" id="contactSubject" placeholder="Subject" minlength="3" maxlength="100" required>
+          <textarea rows="6" id="contactMessage" placeholder="Your Message" required></textarea>
+           <button type="submit">Send Message</button>
         </form>
 
     </div>
@@ -164,6 +158,18 @@
   </div>
 </footer>
 
-<script src="eComjs.js"></script>
+  <script src="utilities.js"></script>
+
+  <script src="apiService.js"></script>
+
+  <script src="auth.js"></script>
+
+  <script src="contact.js"></script>
+
+  <script src="eComjs.js"></script>
+
+  <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
+
+  <script src="navbar.js"></script>
 </body>
 </html>

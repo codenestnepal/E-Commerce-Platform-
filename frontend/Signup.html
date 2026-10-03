@@ -29,17 +29,13 @@
             <h2>Create Account</h2>
             <p>Start your shopping journey today</p>
 
-            <form>
+            <form id="signupForm">
                 <div class="name-row">
-                    <input type="text" placeholder="First Name" required autocomplete="given-name">
-                    <input type="text" placeholder="Last Name" required autocomplete="family-name">
+                    <input type="text" id="name" placeholder="Full Name" required autocomplete="name">
                 </div>
-
-                <input type="email" placeholder="Email Address" required autocomplete="email">
-
-                <input type="password" placeholder="Password" required autocomplete="new-password">
-
-                <input type="password" placeholder="Confirm Password" required autocomplete="new-password">
+                <input type="email" id="email" placeholder="Email Address" required autocomplete="email">
+                <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
 
                 <label class="terms">
                     <input type="checkbox" required>
@@ -67,8 +63,15 @@
             </form>
         </div>
     </div>
-
 </div>
+
+  <script src="utilities.js"></script>
+
+    <script src="apiService.js?v=2"></script>
+
+    <script src="auth.js?v=2"></script>
+
+  <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
