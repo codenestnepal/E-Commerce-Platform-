@@ -38,6 +38,11 @@ const productSchema = new mongoose.Schema(
             required: false // Optional for general platform items, required for vendor items
         },
 
+        vendorName: {
+            type: String,
+            default: ""
+        },
+
         description: {
             type: String,
             default: ""
@@ -46,6 +51,12 @@ const productSchema = new mongoose.Schema(
         images: {
             type: [String],
             default: []
+        },
+
+        status: {
+            type: String,
+            enum: ["pending", "published", "rejected"],
+            default: "published"
         },
 
         isActive: {

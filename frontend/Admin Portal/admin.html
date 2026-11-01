@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Admin Portal</title>
+<title>Admin Portal - Nile</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/frontend/Admin Portal/admin.css">
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 <div class="app">
 
   <aside class="sidebar">
     <div class="brand">ADMIN<span>.</span>PORTAL</div>
+    <div id="connectionStatus" class="connection-status">
+      <span class="dot"></span>
+      <span class="status-text">Backend Connected</span>
+    </div>
     <nav id="nav"></nav>
     <button class="logout" data-action="logout">⏻ <span class="label">Logout</span></button>
   </aside>
@@ -172,6 +176,6 @@
 </div>
 <div class="toast" id="toast"></div>
 
-<script src="/frontend/Admin Portal/admin.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>

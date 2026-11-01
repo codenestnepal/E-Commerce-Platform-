@@ -8,7 +8,11 @@ const orderItemSchema = new mongoose.Schema({
     vendorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: false
+    },
+    vendorName: {
+        type: String,
+        default: ""
     },
     name: {
         type: String,
@@ -49,6 +53,11 @@ const orderSchema = new mongoose.Schema(
         status: {
             type: String,
             enum: ["pending", "paid", "processing", "shipped", "delivered", "cancelled"],
+            default: "pending"
+        },
+        paymentStatus: {
+            type: String,
+            enum: ["pending", "paid", "refunded"],
             default: "pending"
         }
     },

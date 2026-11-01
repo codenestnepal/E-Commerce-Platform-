@@ -33,6 +33,15 @@ const vendorProfileSchema = new mongoose.Schema(
         logoUrl: {
             type: String,
             default: ""
+        },
+        status: {
+            type: String,
+            enum: ["pending", "approved", "rejected", "suspended"],
+            default: "approved"
+        },
+        commissionRate: {
+            type: Number,
+            default: null
         }
     },
     {

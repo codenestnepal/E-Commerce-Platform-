@@ -7,6 +7,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Share+Tech&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="login.css">
+    <style>
+        .msg-box {
+            display: none;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .msg-box.error {
+            display: block;
+            background: #ffebe9;
+            color: #d1242f;
+            border: 1px solid #ff8182;
+        }
+        .msg-box.success {
+            display: block;
+            background: #e6ffed;
+            color: #1a7f37;
+            border: 1px solid #7ee787;
+        }
+        .demo-bar {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #475569;
+        }
+        .demo-bar span {
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .demo-btns {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .demo-chip {
+            background: #e2e8f0;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .demo-chip:hover {
+            background: #cbd5e1;
+        }
+    </style>
 </head>
 <body>
 
@@ -26,25 +77,36 @@
     <div class="login-section">
         <div class="login-card">
             <h2>Welcome Back</h2>
-            <p>Sign in to continue shopping</p>
+            <p>Sign in to continue shopping or manage the portal</p>
 
-            <form>
-                <input type="email" placeholder="Email Address" required autocomplete="username">
+            <div id="loginMessage" class="msg-box"></div>
 
-                <input type="password" placeholder="Password" required autocomplete="current-password">
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email Address" required autocomplete="username">
+
+                <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
 
                 <div class="options">
                     <label>
-                        <input type="checkbox">
+                        <input type="checkbox" id="rememberMe">
                         Remember Me
                     </label>
 
                     <a href="#">Forgot Password?</a>
                 </div>
 
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn" id="submitBtn">
                     Login
                 </button>
+
+                <div class="demo-bar">
+                    <div><span>Quick Demo Login:</span> Click below to autofill</div>
+                    <div class="demo-btns">
+                        <button type="button" class="demo-chip" onclick="fillCreds('admin@nile.com', 'Admin@123')">Admin</button>
+                        <button type="button" class="demo-chip" onclick="fillCreds('pat@mail.com', 'Admin@123')">Vendor (Pat)</button>
+                        <button type="button" class="demo-chip" onclick="fillCreds('elena@customer.com', 'Admin@123')">Customer</button>
+                    </div>
+                </div>
 
                 <div class="divider">
                     <span>OR</span>
@@ -63,6 +125,96 @@
     </div>
 
 </div>
+
+<script>
+function fillCreds(email, password) {
+    document.getElementById("loginEmail").value = email;
+    document.getElementById("loginPassword").value = password;
+}
+
+const form = document.getElementById("loginForm");
+const msgBox = document.getElementById("loginMessage");
+const submitBtn = document.getElementById("submitBtn");
+
+const API_BASE = (function () {
+    if (window.location.protocol.startsWith("http")) {
+        return window.location.origin;
+    }
+    return "http://localhost:5000";
+})();
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    msgBox.className = "msg-box";
+    msgBox.textContent = "";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Signing In...";
+
+    try {
+        // If email looks like admin, attempt admin login first or fallback to standard auth
+        let res = await fetch(`${API_BASE}/api/v1/admin/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+        
+        let data = await res.json().catch(() => ({}));
+
+        if (!res.ok || !data.success) {
+            // Attempt standard /auth/login
+            const authRes = await fetch(`${API_BASE}/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+            const authData = await authRes.json().catch(() => ({}));
+            if (authRes.ok && (authData.success || authData.jwtToken)) {
+                data = {
+                    success: true,
+                    token: authData.jwtToken,
+                    user: authData.user || { role: authData.role, email: authData.email }
+                };
+            }
+        }
+
+        if (data.success) {
+            msgBox.className = "msg-box success";
+            msgBox.textContent = "Login successful! Redirecting...";
+
+            const token = data.token || data.jwtToken;
+            localStorage.setItem("jwtToken", token);
+            localStorage.setItem("adminToken", token);
+            localStorage.setItem("userEmail", email);
+
+            const role = (data.user && data.user.role) || (data.role) || "user";
+            localStorage.setItem("userRole", role);
+
+            setTimeout(() => {
+                if (role === "admin" || role === "Super Admin" || role === "Manager" || email.includes("admin")) {
+                    window.location.href = "Admin Portal/admin.html";
+                } else if (role === "vendor") {
+                    window.location.href = "Vendor Portal/vendor.html";
+                } else {
+                    window.location.href = "index.html";
+                }
+            }, 800);
+        } else {
+            msgBox.className = "msg-box error";
+            msgBox.textContent = data.message || "Invalid email or password. Please try again.";
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Login";
+        }
+    } catch (err) {
+        msgBox.className = "msg-box error";
+        msgBox.textContent = "Cannot connect to server at " + API_BASE + ". Please ensure the backend is running.";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Login";
+    }
+});
+</script>
 
 </body>
 </html>

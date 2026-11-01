@@ -23,6 +23,31 @@ document.addEventListener("DOMContentLoaded", () => {
   localStorage.setItem("nileWishlistCount", wishlistCount);
   updateCounts();
 
+  // Authentication Status in Header
+  const userEmail = localStorage.getItem("userEmail");
+  const userRole = localStorage.getItem("userRole");
+  const loginBtn = document.querySelector(".login-btn");
+  if (loginBtn && userEmail) {
+    if (userRole === "admin" || userRole === "Super Admin") {
+      loginBtn.textContent = "Admin Portal";
+      loginBtn.onclick = () => window.location.href = "Admin Portal/admin.html";
+    } else if (userRole === "vendor") {
+      loginBtn.textContent = "Vendor Portal";
+      loginBtn.onclick = () => window.location.href = "Vendor Portal/vendor.html";
+    } else {
+      loginBtn.textContent = "My Account";
+      loginBtn.onclick = () => {
+        if (confirm("Logged in as " + userEmail + ". Do you want to logout?")) {
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("userRole");
+          localStorage.removeItem("adminToken");
+          window.location.reload();
+        }
+      };
+    }
+  }
+
   const catalogImages = {
     Smartphone: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=85",
     Laptop: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=85",

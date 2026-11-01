@@ -7,6 +7,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Share+Tech&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="signup.css">
+    <style>
+        .msg-box {
+            display: none;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .msg-box.error {
+            display: block;
+            background: #ffebe9;
+            color: #d1242f;
+            border: 1px solid #ff8182;
+        }
+        .msg-box.success {
+            display: block;
+            background: #e6ffed;
+            color: #1a7f37;
+            border: 1px solid #7ee787;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,26 +50,28 @@
             <h2>Create Account</h2>
             <p>Start your shopping journey today</p>
 
-            <form>
+            <div id="signupMessage" class="msg-box"></div>
+
+            <form id="signupForm">
                 <div class="name-row">
-                    <input type="text" placeholder="First Name" required autocomplete="given-name">
-                    <input type="text" placeholder="Last Name" required autocomplete="family-name">
+                    <input type="text" id="fName" placeholder="First Name" required autocomplete="given-name">
+                    <input type="text" id="lName" placeholder="Last Name" required autocomplete="family-name">
                 </div>
 
-                <input type="email" placeholder="Email Address" required autocomplete="email">
+                <input type="email" id="signupEmail" placeholder="Email Address" required autocomplete="email">
 
-                <input type="password" placeholder="Password" required autocomplete="new-password">
+                <input type="password" id="signupPassword" placeholder="Password" required autocomplete="new-password">
 
-                <input type="password" placeholder="Confirm Password" required autocomplete="new-password">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
 
                 <label class="terms">
-                    <input type="checkbox" required>
+                    <input type="checkbox" id="termsAgree" required>
                     <span>
                         I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
                     </span>
                 </label>
 
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn" id="signupBtn">
                     Create Account
                 </button>
 
@@ -69,6 +92,73 @@
     </div>
 
 </div>
+
+<script>
+const form = document.getElementById("signupForm");
+const msgBox = document.getElementById("signupMessage");
+const signupBtn = document.getElementById("signupBtn");
+
+const API_BASE = (function () {
+    if (window.location.protocol.startsWith("http")) {
+        return window.location.origin;
+    }
+    return "http://localhost:5000";
+})();
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fName = document.getElementById("fName").value.trim();
+    const lName = document.getElementById("lName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+        msgBox.className = "msg-box error";
+        msgBox.textContent = "Passwords do not match.";
+        return;
+    }
+
+    if (password.length < 6) {
+        msgBox.className = "msg-box error";
+        msgBox.textContent = "Password must be at least 6 characters long.";
+        return;
+    }
+
+    msgBox.className = "msg-box";
+    msgBox.textContent = "";
+    signupBtn.disabled = true;
+    signupBtn.textContent = "Creating Account...";
+
+    try {
+        const res = await fetch(`${API_BASE}/auth/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fName, lName, email, password })
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.success) {
+            msgBox.className = "msg-box success";
+            msgBox.textContent = "Account created successfully! Redirecting to login...";
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1200);
+        } else {
+            msgBox.className = "msg-box error";
+            msgBox.textContent = data.message || "Failed to create account. Email may already be in use.";
+            signupBtn.disabled = false;
+            signupBtn.textContent = "Create Account";
+        }
+    } catch (err) {
+        msgBox.className = "msg-box error";
+        msgBox.textContent = "Cannot connect to server at " + API_BASE + ". Please ensure backend is running.";
+        signupBtn.disabled = false;
+        signupBtn.textContent = "Create Account";
+    }
+});
+</script>
 
 </body>
 </html>

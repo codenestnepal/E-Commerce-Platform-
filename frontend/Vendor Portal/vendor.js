@@ -4,7 +4,12 @@ const NAV = [
   ["promotions","Promotions & Discounts"],["profile","Store Management"],["notifications","Notifications"]
 ];
 
-const API_BASE = "http://localhost:8000/api/v1/vendor";
+const API_BASE = (function () {
+  if (typeof window !== "undefined" && window.location && window.location.protocol.startsWith("http")) {
+    return `${window.location.origin}/api/v1/vendor`;
+  }
+  return "http://localhost:5000/api/v1/vendor";
+})();
 
 function getAuthToken() {
   return localStorage.getItem("vendorToken") || localStorage.getItem("jwtToken") || "";

@@ -561,3 +561,41 @@ input[type="checkbox"] {
   .grid-2{grid-template-columns:1fr;}
   .toast{left:86px;}
 }
+
+
+/* Admin Portal Backend Connection Indicator */
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  background: rgba(107, 201, 140, 0.1);
+  border: 1px solid rgba(107, 201, 140, 0.3);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--good);
+  text-transform: uppercase;
+  transition: all .2s;
+}
+
+.connection-status.offline {
+  background: rgba(224, 75, 63, 0.1);
+  border-color: rgba(224, 75, 63, 0.3);
+  color: var(--danger);
+}
+
+.connection-status .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 6px var(--good);
+  flex-shrink: 0;
+}
+
+.connection-status.offline .dot {
+  background: var(--danger);
+  box-shadow: 0 0 6px var(--danger);
+}
