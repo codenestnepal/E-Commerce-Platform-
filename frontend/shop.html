@@ -1,212 +1,336 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Shop - NILE</title>
+    <meta name="description" content="Explore our handpicked collection of high-quality items.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="eComstyle.css">
+    <link rel="stylesheet" href="shop.css">
+    <style>
+      .filter-toolbar {
+        max-width: 1200px;
+        margin: 0 auto 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 0 20px;
+      }
+      .filter-chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chip-btn {
+        background: #262424;
+        color: #9a9591;
+        border: 1px solid #3a3737;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .chip-btn:hover, .chip-btn.active {
+        background: #ff6347;
+        color: #1d1c1c;
+        border-color: #ff6347;
+        font-weight: 700;
+      }
+      .sort-select {
+        background: #262424;
+        color: #f2efe9;
+        border: 1px solid #3a3737;
+        padding: 8px 14px;
+        border-radius: 6px;
+        outline: none;
+        font-size: 13px;
+      }
+      .catalog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .dynamic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 24px;
+        margin-bottom: 60px;
+      }
+      .shop-card {
+        background: #262424;
+        border: 1px solid #3a3737;
+        border-radius: 10px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, border-color 0.2s;
+        cursor: pointer;
+        position: relative;
+      }
+      .shop-card:hover {
+        transform: translateY(-4px);
+        border-color: #ff6347;
+      }
+      .card-img-wrap {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #1d1c1c;
+        margin-bottom: 14px;
+      }
+      .card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .shop-card h4 {
+        color: #f2efe9;
+        font-size: 16px;
+        margin: 0 0 6px;
+      }
+      .shop-card .card-cat {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #ff6347;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+      .shop-card .price {
+        color: #ff6347;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .card-actions {
+        margin-top: auto;
+        display: flex;
+        gap: 8px;
+      }
+      .btn-add {
+        flex: 1;
+        background: #ff6347;
+        color: #1d1c1c;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .btn-heart {
+        width: 36px;
+        height: 36px;
+        background: #1d1c1c;
+        border: 1px solid #3a3737;
+        color: #9a9591;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn-heart.active {
+        color: #ff6347;
+      }
+    </style>
+</head>
+<body>
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Shop - E-Commerce</title>
-        <meta name="description" content="Explore our latest collection of products.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="eComstyle.css">
-        <link rel="stylesheet" href="shop.css">
-    </head>
-    <body>
-     <header>
+  <header>
     <nav class="nav-bar">
-        <!-- 1.) Company logo -->
       <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
-
-      <!-- 2.) Navigation Section -->
       <ul class="nav-link">
         <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html" style="color:tomato;">Shop</a></li>
         <li><a href="categories.html">Categories</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
 
-      <!-- 3.) Search bar -->
       <div class="search-container">
         <input type="text" placeholder="Search" id="SearchQuery">
         <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
 
-      <!-- 4.) Cart Icon -->
-      <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i></a></div>
-      <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
-
-      <!-- 5.) Login/Sign up button -->
+      <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+      <div class="cart"><a href="cart.html" title="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
       <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
     </nav>
   </header>
 
-   <section class="shop-section" id="shop">
-
+  <section class="shop-section" id="shop">
     <div class="shop-header">
-        <h2 class="shop-title">Our Products</h2>
-        <p class="shop-subtitle">Explore our handpicked collection of high-quality items curated just for you</p>
-        <div class="title-underline"></div>
+      <h2 class="shop-title">Discover Our Products</h2>
+      <p class="shop-subtitle">Handpicked collection of top-rated items curated for you</p>
+      <div class="title-underline"></div>
     </div>
 
-    <!-- Electronics -->
-    <div class="category-row">
-        <h3>Electronics</h3>
+    <!-- Filter & Sort Toolbar -->
+    <div class="filter-toolbar">
+      <div class="filter-chips">
+        <button class="chip-btn active" onclick="setCategoryFilter('all', this)">All</button>
+        <button class="chip-btn" onclick="setCategoryFilter('Electronics', this)">Electronics</button>
+        <button class="chip-btn" onclick="setCategoryFilter('Fashion', this)">Fashion</button>
+        <button class="chip-btn" onclick="setCategoryFilter('Home & Living', this)">Home & Living</button>
+        <button class="chip-btn" onclick="setCategoryFilter('Beauty', this)">Beauty</button>
+        <button class="chip-btn" onclick="setCategoryFilter('Sports', this)">Sports</button>
+      </div>
 
-        <div class="products-grid">
-            <div class="shop-card">
-                <img src="electronics1.jpg" alt="">
-                <h4>Smartphone</h4>
-                <p>$499</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="electronics2.jpg" alt="">
-                <h4>Laptop</h4>
-                <p>$899</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="electronics3.jpg" alt="">
-                <h4>Headphones</h4>
-                <p>$129</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="electronics4.jpg" alt="">
-                <h4>Smart Watch</h4>
-                <p>$199</p>
-            </div>
-        </div>
+      <select class="sort-select" id="sortSelect" onchange="changeSort(this.value)">
+        <option value="featured">Sort: Featured</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
     </div>
 
-    <!-- Fashion -->
-    <div class="category-row">
-        <h3>Fashion</h3>
-
-        <div class="products-grid">
-            <div class="shop-card">
-                <img src="fashion1.jpg" alt="">
-                <h4>Jacket</h4>
-                <p>$89</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="fashion2.jpg" alt="">
-                <h4>T-Shirt</h4>
-                <p>$25</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="fashion3.jpg" alt="">
-                <h4>Jeans</h4>
-                <p>$49</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="fashion4.jpg" alt="">
-                <h4>Sneakers</h4>
-                <p>$75</p>
-            </div>
-        </div>
+    <!-- Dynamic Grid -->
+    <div class="catalog-container">
+      <div class="dynamic-grid" id="catalogGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
     </div>
+  </section>
 
-    <!-- Home & Living -->
-    <div class="category-row">
-        <h3>Home & Living</h3>
+  <script src="eComjs.js"></script>
+  <script>
+    let allProducts = [];
+    let activeCategory = "all";
+    let activeSort = "featured";
+    let activeSearch = "";
 
-        <div class="products-grid">
-            <div class="shop-card">
-                <img src="home1.jpg" alt="">
-                <h4>Sofa</h4>
-                <p>$799</p>
+    async function fetchCatalog() {
+      const grid = document.getElementById("catalogGrid");
+      grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#9a9591;"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><p>Loading products...</p></div>';
+
+      try {
+        const res = await fetch(`${API_BASE}/products`);
+        const data = await res.json().catch(() => ({}));
+        if (data.products && Array.isArray(data.products)) {
+          allProducts = data.products;
+        }
+      } catch (e) {}
+
+      // Check URL query parameters
+      const params = new URLSearchParams(window.location.search);
+      const urlCat = params.get("category");
+      const urlSearch = params.get("search");
+
+      if (urlCat) {
+        activeCategory = urlCat;
+        document.querySelectorAll(".chip-btn").forEach(btn => {
+          if (btn.textContent.trim().toLowerCase() === urlCat.toLowerCase()) {
+            document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+          }
+        });
+      }
+
+      if (urlSearch) {
+        activeSearch = urlSearch;
+        const sInput = document.getElementById("SearchQuery");
+        if (sInput) sInput.value = urlSearch;
+      }
+
+      renderCatalog();
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById("catalogGrid");
+
+      let filtered = allProducts.slice();
+
+      if (activeCategory !== "all") {
+        filtered = filtered.filter(p => p.category && p.category.toLowerCase() === activeCategory.toLowerCase());
+      }
+
+      if (activeSearch) {
+        const q = activeSearch.toLowerCase();
+        filtered = filtered.filter(p =>
+          (p.name && p.name.toLowerCase().includes(q)) ||
+          (p.category && p.category.toLowerCase().includes(q)) ||
+          (p.description && p.description.toLowerCase().includes(q))
+        );
+      }
+
+      if (activeSort === "price-low") filtered.sort((a, b) => a.price - b.price);
+      else if (activeSort === "price-high") filtered.sort((a, b) => b.price - a.price);
+      else if (activeSort === "name") filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align:center; padding:60px 20px; color:#9a9591;">
+            <i class="fa-solid fa-box-open fa-3x" style="color:#ff6347; margin-bottom:12px;"></i>
+            <h3 style="color:#f2efe9;">No Products Found</h3>
+            <p>Try adjusting your search or category filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(prod => {
+        const id = prod._id || prod.id || prod.name;
+        const img = (prod.images && prod.images[0]) || prod.image || "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600";
+        const isHearted = NileStore.isWishlisted(prod.name);
+
+        return `
+          <div class="shop-card" onclick="window.location.href='product.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(prod.name)}&price=${prod.price}'">
+            <div class="card-img-wrap">
+              <img src="${img}" alt="${prod.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600'">
             </div>
-
-            <div class="shop-card">
-                <img src="home2.jpg" alt="">
-                <h4>Chair</h4>
-                <p>$149</p>
+            <div class="card-cat">${prod.category || "General"}</div>
+            <h4>${prod.name}</h4>
+            <div class="price">$${Number(prod.price).toFixed(2)}</div>
+            <div class="card-actions">
+              <button class="btn-add" onclick="event.stopPropagation(); NileStore.addToCart({ id: '${id}', name: '${prod.name.replace(/'/g, "\\'")}', price: ${prod.price}, image: '${img}', category: '${prod.category}' })">
+                Add to Cart <i class="fa-solid fa-plus"></i>
+              </button>
+              <button class="btn-heart ${isHearted ? 'active' : ''}" onclick="event.stopPropagation(); toggleHeart(this, { id: '${id}', name: '${prod.name.replace(/'/g, "\\'")}', price: ${prod.price}, image: '${img}', category: '${prod.category}' })" title="Wishlist">
+                <i class="fa-${isHearted ? 'solid' : 'regular'} fa-heart"></i>
+              </button>
             </div>
+          </div>
+        `;
+      }).join("");
+    }
 
-            <div class="shop-card">
-                <img src="home3.jpg" alt="">
-                <h4>Table</h4>
-                <p>$199</p>
-            </div>
+    function toggleHeart(btn, prod) {
+      const isSaved = NileStore.toggleWishlist(prod);
+      btn.classList.toggle("active", isSaved);
+      btn.innerHTML = `<i class="fa-${isSaved ? 'solid' : 'regular'} fa-heart"></i>`;
+    }
 
-            <div class="shop-card">
-                <img src="home4.jpg" alt="">
-                <h4>Lamp</h4>
-                <p>$59</p>
-            </div>
-        </div>
-    </div>
+    function setCategoryFilter(cat, btn) {
+      activeCategory = cat;
+      document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderCatalog();
+    }
 
-    <!-- Beauty -->
-    <div class="category-row">
-        <h3>Beauty</h3>
+    function changeSort(val) {
+      activeSort = val;
+      renderCatalog();
+    }
 
-        <div class="products-grid">
-            <div class="shop-card">
-                <img src="beauty1.jpg" alt="">
-                <h4>Beauty Kit</h4>
-                <p>$59</p>
-            </div>
+    window.filterCatalogBySearch = function(query) {
+      activeSearch = query;
+      renderCatalog();
+    };
 
-            <div class="shop-card">
-                <img src="beauty2.jpg" alt="">
-                <h4>Perfume</h4>
-                <p>$79</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="beauty3.jpg" alt="">
-                <h4>Face Wash</h4>
-                <p>$19</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="beauty4.jpg" alt="">
-                <h4>Moisturizer</h4>
-                <p>$29</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sports -->
-    <div class="category-row">
-        <h3>Sports</h3>
-
-        <div class="products-grid">
-            <div class="shop-card">
-                <img src="sports1.jpg" alt="">
-                <h4>Football</h4>
-                <p>$35</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="sports2.jpg" alt="">
-                <h4>Basketball</h4>
-                <p>$30</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="sports3.jpg" alt="">
-                <h4>Gym Bag</h4>
-                <p>$45</p>
-            </div>
-
-            <div class="shop-card">
-                <img src="sports4.jpg" alt="">
-                <h4>Yoga Mat</h4>
-                <p>$25</p>
-            </div>
-        </div>
-    </div>
-
-</section>
-        
-        <script src="eComjs.js"></script>
-        <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
-    </body>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchCatalog();
+    });
+  </script>
+</body>
 </html>

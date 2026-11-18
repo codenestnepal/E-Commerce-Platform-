@@ -7,25 +7,16 @@ const {
   deleteContact
 } = require("../controllers/contactController");
 const contactValidation = require("../middleware/contactValidation");
+const adminAuth = require("../middleware/adminAuth");
 
-// @route   POST /contact  (or /contact/submit)
-// @desc    Submit contact form
+// Public contact submission
 router.post("/", contactValidation, submitContact);
 router.post("/submit", contactValidation, submitContact);
-
-// Legacy fallback route in case frontend posts to /contact/contact
 router.post("/contact", contactValidation, submitContact);
 
-// @route   GET /contact
-// @desc    Get all contact submissions
-router.get("/", getAllContacts);
-
-// @route   GET /contact/:id
-// @desc    Get single contact submission by ID
-router.get("/:id", getContactById);
-
-// @route   DELETE /contact/:id
-// @desc    Delete contact submission by ID
-router.delete("/:id", deleteContact);
+// Admin-protected contact inspection & management
+router.get("/", adminAuth, getAllContacts);
+router.get("/:id", adminAuth, getContactById);
+router.delete("/:id", adminAuth, deleteContact);
 
 module.exports = router;

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - NILE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <style>
+    .product-page-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #9a9591;
+      margin-bottom: 24px;
+    }
+    .breadcrumbs a {
+      color: #f2efe9;
+      text-decoration: none;
+    }
+    .product-main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      background: #262424;
+      border: 1px solid #3a3737;
+      border-radius: 12px;
+      padding: 36px;
+    }
+    @media (max-width: 868px) {
+      .product-main-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 20px;
+      }
+    }
+    .gallery-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .main-img-box {
+      width: 100%;
+      height: 420px;
+      background: #1d1c1c;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #3a3737;
+    }
+    .main-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .main-img-box img:hover {
+      transform: scale(1.04);
+    }
+    .product-info-wrap h1 {
+      font-size: 32px;
+      margin: 8px 0 12px;
+      color: #f2efe9;
+    }
+    .category-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255, 99, 71, 0.15);
+      color: #ff6347;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: #f59e0b;
+      font-size: 14px;
+    }
+    .price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .current-price {
+      font-size: 36px;
+      font-weight: 800;
+      color: #ff6347;
+    }
+    .stock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      background: rgba(107, 201, 140, 0.15);
+      color: #6bc98c;
+      font-weight: 600;
+    }
+    .desc-text {
+      color: #9a9591;
+      line-height: 1.6;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-top: 16px;
+      border-top: 1px solid #3a3737;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #f2efe9;
+    }
+    .feature-item i {
+      color: #ff6347;
+    }
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid #3a3737;
+      border-radius: 6px;
+      background: #1d1c1c;
+    }
+    .qty-control button {
+      background: none;
+      border: none;
+      color: #f2efe9;
+      width: 40px;
+      height: 44px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .qty-control input {
+      width: 44px;
+      height: 44px;
+      text-align: center;
+      background: none;
+      border: none;
+      color: #f2efe9;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .btn-add-cart {
+      flex: 1;
+      background: #ff6347;
+      color: #1d1c1c;
+      border: none;
+      height: 46px;
+      padding: 0 24px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-add-cart:hover {
+      background: #e85338;
+    }
+    .btn-wishlist {
+      width: 46px;
+      height: 46px;
+      border: 1px solid #3a3737;
+      background: #1d1c1c;
+      color: #f2efe9;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.2s;
+    }
+    .btn-wishlist.active {
+      color: #ff6347;
+      border-color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav-bar">
+    <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
+    <ul class="nav-link">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="search-container">
+      <input type="text" placeholder="Search" id="SearchQuery">
+      <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+    <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+    <div class="cart"><a href="cart.html" title="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
+    <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+  </nav>
+</header>
+
+<div class="product-page-container">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+    <a href="shop.html">Shop</a>
+    <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+    <span id="bcCategory">Electronics</span>
+    <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i>
+    <span id="bcProduct" style="color: #ff6347;">Product</span>
+  </div>
+
+  <div class="product-main-grid">
+
+    <!-- Gallery -->
+    <div class="gallery-wrap">
+      <div class="main-img-box">
+        <img id="mainProductImg" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85" alt="Product">
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-info-wrap">
+      <span class="category-badge" id="productCat">Electronics</span>
+      <h1 id="productTitle">Product Name</h1>
+
+      <div class="rating-row">
+        <span>★★★★★</span>
+        <span style="color: #9a9591;">(4.8 • 140 reviews)</span>
+        <span style="color: #3a3737;">•</span>
+        <span class="stock-badge"><i class="fa-solid fa-check"></i> In Stock</span>
+      </div>
+
+      <div class="price-box">
+        <div class="current-price" id="productPrice">$499.00</div>
+      </div>
+
+      <p class="desc-text" id="productDesc">
+        Experience outstanding performance, sleek ergonomic design, and unmatched reliability. Engineered with high-grade components for everyday excellence.
+      </p>
+
+      <div class="features-list">
+        <div class="feature-item"><i class="fa-solid fa-truck-fast"></i> Free express shipping over $100</div>
+        <div class="feature-item"><i class="fa-solid fa-rotate-left"></i> 30-Day Hassle-Free Returns</div>
+        <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> 1-Year Nile Verified Warranty</div>
+        <div class="feature-item"><i class="fa-solid fa-lock"></i> 100% Secure Checkout</div>
+      </div>
+
+      <div class="action-row">
+        <div class="qty-control">
+          <button onclick="changeDetailQty(-1)">-</button>
+          <input type="number" id="detailQty" value="1" min="1">
+          <button onclick="changeDetailQty(1)">+</button>
+        </div>
+
+        <button class="btn-add-cart" onclick="addProductToCart()">
+          <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+        </button>
+
+        <button class="btn-wishlist" id="wishlistToggleBtn" onclick="toggleDetailWishlist()" title="Add to Wishlist">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="eComjs.js"></script>
+<script>
+let currentProduct = null;
+
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    id: params.get("id"),
+    name: params.get("name"),
+    price: params.get("price")
+  };
+}
+
+function changeDetailQty(delta) {
+  const input = document.getElementById("detailQty");
+  const val = Math.max(1, (parseInt(input.value, 10) || 1) + delta);
+  input.value = val;
+}
+
+function addProductToCart() {
+  if (!currentProduct) return;
+  const qty = parseInt(document.getElementById("detailQty").value, 10) || 1;
+  NileStore.addToCart(currentProduct, qty);
+}
+
+function toggleDetailWishlist() {
+  if (!currentProduct) return;
+  const isSaved = NileStore.toggleWishlist(currentProduct);
+  const btn = document.getElementById("wishlistToggleBtn");
+  btn.innerHTML = isSaved ? '<i class="fa-solid fa-heart" style="color:#ff6347;"></i>' : '<i class="fa-regular fa-heart"></i>';
+}
+
+async function loadProductDetails() {
+  const { id, name, price } = getQueryParams();
+  const searchKey = id || name || "Smartphone Pro Max";
+
+  try {
+    const res = await fetch(`${API_BASE}/products/${encodeURIComponent(searchKey)}`);
+    const data = await res.json().catch(() => ({}));
+
+    if (res.ok && data.success && data.product) {
+      currentProduct = data.product;
+    }
+  } catch (err) {}
+
+  if (!currentProduct) {
+    // Fallback product info
+    currentProduct = {
+      name: name || "Smartphone Pro Max",
+      price: price ? parseFloat(price) : 899.99,
+      category: "Electronics",
+      description: "Flagship smartphone featuring an ultra-clear 120Hz OLED display, high-capacity 5000mAh battery, and triple-lens 108MP camera array.",
+      image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85"
+    };
+  }
+
+  // Populate DOM
+  document.title = `${currentProduct.name} - NILE`;
+  document.getElementById("productTitle").textContent = currentProduct.name;
+  document.getElementById("bcProduct").textContent = currentProduct.name;
+  document.getElementById("productPrice").textContent = `$${Number(currentProduct.price).toFixed(2)}`;
+  document.getElementById("productCat").textContent = currentProduct.category || "General";
+  document.getElementById("bcCategory").textContent = currentProduct.category || "General";
+
+  if (currentProduct.description) {
+    document.getElementById("productDesc").textContent = currentProduct.description;
+  }
+
+  const imgUrl = (currentProduct.images && currentProduct.images[0]) || currentProduct.image || "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85";
+  document.getElementById("mainProductImg").src = imgUrl;
+
+  // Set initial wishlist heart state
+  const isSaved = NileStore.isWishlisted(currentProduct.name);
+  const btn = document.getElementById("wishlistToggleBtn");
+  btn.innerHTML = isSaved ? '<i class="fa-solid fa-heart" style="color:#ff6347;"></i>' : '<i class="fa-regular fa-heart"></i>';
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProductDetails();
+});
+</script>
+
+</body>
+</html>

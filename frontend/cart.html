@@ -3,22 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>Shopping Cart - NILE</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="eComstyle.css">
     <link rel="stylesheet" href="cart.css">
-
-    <script src="https://kit.fontawesome.com/acc7b38144.js" crossorigin="anonymous"></script>
+    <style>
+      .empty-cart-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: #262424;
+        border-radius: 12px;
+        border: 1px solid #3a3737;
+        margin: 20px 0;
+      }
+      .empty-cart-state i {
+        font-size: 56px;
+        color: #ff6347;
+        margin-bottom: 16px;
+      }
+      .empty-cart-state h2 {
+        color: #f2efe9;
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      .empty-cart-state p {
+        color: #9a9591;
+        margin-bottom: 24px;
+      }
+      .coupon-applied-tag {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(107, 201, 140, 0.15);
+        border: 1px solid #6bc98c;
+        color: #6bc98c;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+      .remove-coupon-btn {
+        background: none;
+        border: none;
+        color: #ff6347;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    </style>
 </head>
 <body>
 
 <header>
   <nav class="nav-bar">
-    <!-- 1.) Company logo -->
-   <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
-
-    <!-- 2.) Navigation Section -->
+    <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
     <ul class="nav-link">
       <li><a href="index.html">Home</a></li>
       <li><a href="shop.html">Shop</a></li>
@@ -27,17 +66,13 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <!-- 3.) Search bar -->
     <div class="search-container">
       <input type="text" placeholder="Search" id="SearchQuery">
       <button onclick="searchbar()"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
 
-    <!-- 4.) Cart Icon -->
-    <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i></a></div>
-      <div class="cart"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></div>
-
-    <!-- 5.) Login/Sign up button -->
+    <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+    <div class="cart"><a href="cart.html" title="Shopping Cart" style="color:tomato;"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
     <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
   </nav>
 </header>
@@ -46,146 +81,238 @@
 
     <div class="cart-header">
         <h1>Shopping Cart</h1>
-        <p>Review your items and proceed to checkout.</p>
+        <p>Review your selected items and proceed to secure checkout.</p>
     </div>
 
-    <div class="cart-container">
+    <div class="cart-container" id="cartContainer">
 
-        <!-- Cart Items -->
-        <div class="cart-items">
-
-            <div class="cart-item">
-
-                <div class="item-image">
-                    <img src="product1.jpg" alt="Product">
-                </div>
-
-                <div class="item-details">
-                    <h3>Wireless Headphones</h3>
-                    <p>Premium sound quality with noise cancellation.</p>
-                    <span>$129.99</span>
-                </div>
-
-                <div class="item-quantity">
-                    <button>-</button>
-                    <input type="number" value="1">
-                    <button>+</button>
-                </div>
-
-                <div class="item-total">
-                    <h4>$129.99</h4>
-                </div>
-
-                <button class="remove-btn">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-
-            </div>
-
-
-            <div class="cart-item">
-
-                <div class="item-image">
-                    <img src="product2.jpg" alt="Product">
-                </div>
-
-                <div class="item-details">
-                    <h3>Smart Watch</h3>
-                    <p>Track fitness and stay connected everywhere.</p>
-                    <span>$199.99</span>
-                </div>
-
-                <div class="item-quantity">
-                    <button>-</button>
-                    <input type="number" value="1">
-                    <button>+</button>
-                </div>
-
-                <div class="item-total">
-                    <h4>$199.99</h4>
-                </div>
-
-                <button class="remove-btn">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-
-            </div>
-
-
-            <div class="cart-item">
-
-                <div class="item-image">
-                    <img src="product3.jpg" alt="Product">
-                </div>
-
-                <div class="item-details">
-                    <h3>Running Shoes</h3>
-                    <p>Comfortable and lightweight sports shoes.</p>
-                    <span>$89.99</span>
-                </div>
-
-                <div class="item-quantity">
-                    <button>-</button>
-                    <input type="number" value="1">
-                    <button>+</button>
-                </div>
-
-                <div class="item-total">
-                    <h4>$89.99</h4>
-                </div>
-
-                <button class="remove-btn">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-
-            </div>
-
+        <!-- Dynamic Cart Items Container -->
+        <div class="cart-items" id="cartItemsList">
+            <!-- Rendered by JavaScript -->
         </div>
 
         <!-- Order Summary -->
-        <div class="cart-summary">
-
+        <div class="cart-summary" id="cartSummary">
             <h2>Order Summary</h2>
 
             <div class="summary-row">
                 <span>Subtotal</span>
-                <span>$419.97</span>
+                <span id="subtotalVal">$0.00</span>
+            </div>
+
+            <div class="summary-row" id="discountRow" style="display: none; color: #6bc98c;">
+                <span>Discount</span>
+                <span id="discountVal">-$0.00</span>
             </div>
 
             <div class="summary-row">
                 <span>Shipping</span>
-                <span>$15.00</span>
+                <span id="shippingVal">$15.00</span>
             </div>
 
             <div class="summary-row">
-                <span>Tax</span>
-                <span>$10.00</span>
+                <span>Estimated Tax (5%)</span>
+                <span id="taxVal">$0.00</span>
             </div>
 
             <div class="summary-row total">
                 <span>Total</span>
-                <span>$444.97</span>
+                <span id="grandTotalVal">$0.00</span>
             </div>
 
-            <input type="text" placeholder="Enter Coupon Code">
+            <div id="couponTag" class="coupon-applied-tag">
+                <span id="couponTagText">Coupon applied</span>
+                <button type="button" class="remove-coupon-btn" onclick="removeCoupon()">✕</button>
+            </div>
 
-            <button class="coupon-btn">
-                Apply Coupon
+            <div style="display: flex; gap: 8px; margin: 14px 0;">
+                <input type="text" id="couponInput" placeholder="Coupon (e.g. WELCOME10)" style="margin: 0; text-transform: uppercase;">
+                <button type="button" class="coupon-btn" onclick="applyCoupon()" style="white-space: nowrap;">Apply</button>
+            </div>
+
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+                Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
             </button>
 
-            <button class="checkout-btn">
-                Proceed to Checkout
-            </button>
-
-            <button class="continue-btn">
+            <button class="continue-btn" onclick="window.location.href='shop.html'">
                 Continue Shopping
             </button>
-
         </div>
 
     </div>
 
 </section>
+
+<script src="eComjs.js"></script>
+<script>
+let currentDiscount = 0;
+let currentCouponCode = "";
+
+function renderCart() {
+  const cart = NileStore.getCart();
+  const listEl = document.getElementById("cartItemsList");
+  const containerEl = document.getElementById("cartContainer");
+
+  if (!cart || cart.length === 0) {
+    containerEl.innerHTML = `
+      <div class="empty-cart-state" style="grid-column: 1 / -1;">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <h2>Your Shopping Cart is Empty</h2>
+        <p>Looks like you haven't added anything to your cart yet.</p>
+        <button class="checkout-btn" style="max-width: 240px; margin: 0 auto;" onclick="window.location.href='shop.html'">
+          Start Shopping <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  listEl.innerHTML = cart.map(item => {
+    const itemTotal = (Number(item.price) * Number(item.quantity)).toFixed(2);
+    const imgUrl = item.image || "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600";
+    const itemId = item.id || item.productId || item.name;
+
+    return `
+      <div class="cart-item" data-id="${itemId}">
+        <div class="item-image">
+          <img src="${imgUrl}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600'">
+        </div>
+        <div class="item-details">
+          <h3>${item.name}</h3>
+          <p>${item.category || "General"}</p>
+          <span>$${Number(item.price).toFixed(2)}</span>
+        </div>
+        <div class="item-quantity">
+          <button onclick="changeQty('${itemId}', ${item.quantity - 1})">-</button>
+          <input type="number" min="1" value="${item.quantity}" onchange="changeQty('${itemId}', this.value)">
+          <button onclick="changeQty('${itemId}', ${item.quantity + 1})">+</button>
+        </div>
+        <div class="item-total">
+          <h4>$${itemTotal}</h4>
+        </div>
+        <button class="remove-btn" onclick="removeItem('${itemId}')" title="Remove item">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    `;
+  }).join("");
+
+  updateTotals(cart);
+}
+
+function changeQty(id, newQty) {
+  const qty = parseInt(newQty, 10);
+  NileStore.updateCartQuantity(id, isNaN(qty) ? 1 : qty);
+  renderCart();
+}
+
+function removeItem(id) {
+  NileStore.removeFromCart(id);
+  renderCart();
+}
+
+function updateTotals(cart) {
+  const subtotal = cart.reduce((acc, it) => acc + Number(it.price) * Number(it.quantity), 0);
+  const shipping = subtotal > 100 || subtotal === 0 ? 0 : 15;
+  const discountAmt = Math.min(currentDiscount, subtotal);
+  const taxable = Math.max(0, subtotal - discountAmt);
+  const tax = Number((taxable * 0.05).toFixed(2));
+  const grandTotal = Number((taxable + shipping + tax).toFixed(2));
+
+  document.getElementById("subtotalVal").textContent = `$${subtotal.toFixed(2)}`;
+  document.getElementById("shippingVal").textContent = shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`;
+  document.getElementById("taxVal").textContent = `$${tax.toFixed(2)}`;
+  document.getElementById("grandTotalVal").textContent = `$${grandTotal.toFixed(2)}`;
+
+  const discRow = document.getElementById("discountRow");
+  if (discountAmt > 0) {
+    discRow.style.display = "flex";
+    document.getElementById("discountVal").textContent = `-$${discountAmt.toFixed(2)}`;
+  } else {
+    discRow.style.display = "none";
+  }
+
+  // Save calculation state for checkout
+  localStorage.setItem("nile_checkout_summary", JSON.stringify({
+    subtotal,
+    discount: discountAmt,
+    couponCode: currentCouponCode,
+    shippingFee: shipping,
+    taxFee: tax,
+    grandTotal
+  }));
+}
+
+function applyCoupon() {
+  const code = document.getElementById("couponInput").value.trim().toUpperCase();
+  if (!code) {
+    NileStore.toast("Please enter a coupon code.", "notice");
+    return;
+  }
+
+  const cart = NileStore.getCart();
+  const subtotal = cart.reduce((acc, it) => acc + Number(it.price) * Number(it.quantity), 0);
+
+  if (code === "WELCOME10") {
+    currentDiscount = subtotal * 0.10;
+    currentCouponCode = "WELCOME10";
+    showCouponSuccess("10% discount applied!");
+  } else if (code === "NILEMEGA20" || code === "SUMMER25") {
+    currentDiscount = subtotal * 0.20;
+    currentCouponCode = code;
+    showCouponSuccess("20% discount applied!");
+  } else {
+    // Attempt backend coupon validation
+    fetch(`${API_BASE}/api/v1/admin/coupons`)
+      .then(r => r.json())
+      .then(d => {
+        const found = (d.coupons || []).find(c => c.code === code && c.active);
+        if (found) {
+          currentDiscount = subtotal * (found.discount / 100);
+          currentCouponCode = found.code;
+          showCouponSuccess(`${found.discount}% discount applied!`);
+        } else {
+          NileStore.toast("Invalid or expired coupon code.", "notice");
+        }
+      })
+      .catch(() => {
+        NileStore.toast("Invalid or expired coupon code.", "notice");
+      });
+    return;
+  }
+}
+
+function showCouponSuccess(msg) {
+  document.getElementById("couponTag").style.display = "flex";
+  document.getElementById("couponTagText").textContent = `${currentCouponCode}: ${msg}`;
+  document.getElementById("couponInput").value = "";
+  NileStore.toast(msg, "success");
+  const cart = NileStore.getCart();
+  updateTotals(cart);
+}
+
+function removeCoupon() {
+  currentDiscount = 0;
+  currentCouponCode = "";
+  document.getElementById("couponTag").style.display = "none";
+  NileStore.toast("Coupon removed.", "notice");
+  const cart = NileStore.getCart();
+  updateTotals(cart);
+}
+
+function proceedToCheckout() {
+  const cart = NileStore.getCart();
+  if (!cart || cart.length === 0) {
+    NileStore.toast("Your cart is empty.", "notice");
+    return;
+  }
+  window.location.href = "checkout.html";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCart();
+});
+</script>
 
 </body>
 </html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed - NILE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <style>
+    .success-card {
+      max-width: 680px;
+      margin: 60px auto;
+      background: #262424;
+      border: 1px solid #3a3737;
+      border-radius: 12px;
+      padding: 48px 36px;
+      text-align: center;
+    }
+    .check-icon {
+      width: 76px;
+      height: 76px;
+      background: rgba(107, 201, 140, 0.15);
+      border: 2px solid #6bc98c;
+      color: #6bc98c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 24px;
+    }
+    .order-meta-box {
+      background: #1d1c1c;
+      border: 1px solid #3a3737;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 28px 0;
+      text-align: left;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #9a9591;
+    }
+    .meta-row strong {
+      color: #f2efe9;
+    }
+    .btn-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+    .btn-main {
+      background: #ff6347;
+      color: #1d1c1c;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-sec {
+      background: #1d1c1c;
+      color: #f2efe9;
+      border: 1px solid #3a3737;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav-bar">
+    <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
+    <ul class="nav-link">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+    <div class="cart"><a href="cart.html" title="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
+    <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+  </nav>
+</header>
+
+<div class="success-card">
+  <div class="check-icon">
+    <i class="fa-solid fa-check"></i>
+  </div>
+
+  <h1 style="color:#f2efe9; font-size:28px; margin-bottom:8px;">Thank You for Your Order!</h1>
+  <p style="color:#9a9591; font-size:15px; margin:0;">
+    Your order has been received and is being prepared for shipment.
+  </p>
+
+  <div class="order-meta-box">
+    <div class="meta-row">
+      <span>Order Number:</span>
+      <strong id="ordNumText" style="color:#ff6347; font-size:16px;">ORD-123456</strong>
+    </div>
+    <div class="meta-row">
+      <span>Payment Method:</span>
+      <strong id="ordPayText">Cash on Delivery</strong>
+    </div>
+    <div class="meta-row">
+      <span>Estimated Delivery:</span>
+      <strong>3 - 5 Business Days</strong>
+    </div>
+    <div class="meta-row" style="margin-bottom:0;">
+      <span>Delivery Address:</span>
+      <strong id="ordAddrText">Kathmandu, Nepal</strong>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a href="orders.html" class="btn-main">
+      <i class="fa-solid fa-box-open"></i> View My Orders
+    </a>
+    <a href="shop.html" class="btn-sec">
+      Continue Shopping <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</div>
+
+<script src="eComjs.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get("orderId");
+  const lastOrder = JSON.parse(localStorage.getItem("nile_last_order") || "{}");
+
+  const num = orderId || lastOrder.orderNumber || "ORD-94812";
+  document.getElementById("ordNumText").textContent = num;
+
+  if (lastOrder.paymentMethod) {
+    document.getElementById("ordPayText").textContent = lastOrder.paymentMethod === "COD" ? "Cash on Delivery" : lastOrder.paymentMethod;
+  }
+  if (lastOrder.shippingAddress && lastOrder.shippingAddress.address) {
+    document.getElementById("ordAddrText").textContent = `${lastOrder.shippingAddress.address}, ${lastOrder.shippingAddress.city}`;
+  }
+});
+</script>
+
+</body>
+</html>

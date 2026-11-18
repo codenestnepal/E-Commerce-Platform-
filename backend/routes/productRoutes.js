@@ -1,20 +1,13 @@
-const express = require('express');
-
+const express = require("express");
 const router = express.Router();
+const {
+  getProducts,
+  getProductById,
+  getFeaturedProducts
+} = require("../controllers/productController");
 
-// TODO: add ensureAuthenticated middleware when auth middleware module is ready
-router.get('/', (req, res) => {
-   res.status(200).json([
-    {
-        name: "mobile",
-        price: 15000
-    },
-    {
-        name: "tv",
-        price: 90000
-    }
-   ]);
-});
-
+router.get("/featured", getFeaturedProducts);
+router.get("/:id", getProductById);
+router.get("/", getProducts);
 
 module.exports = router;

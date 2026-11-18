@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - NILE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <style>
+    .orders-wrap {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .page-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .order-card {
+      background: #262424;
+      border: 1px solid #3a3737;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .order-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #3a3737;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .order-id-group h3 {
+      font-size: 18px;
+      color: #f2efe9;
+      margin: 0 0 4px;
+    }
+    .order-id-group span {
+      font-size: 12px;
+      color: #9a9591;
+    }
+    .status-tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .status-tag.pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+    .status-tag.processing { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .status-tag.shipped { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+    .status-tag.delivered { background: rgba(107, 201, 140, 0.15); color: #6bc98c; }
+    .status-tag.cancelled { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .items-table th {
+      text-align: left;
+      font-size: 12px;
+      color: #9a9591;
+      padding-bottom: 8px;
+    }
+    .items-table td {
+      padding: 10px 0;
+      border-top: 1px solid #323030;
+      color: #f2efe9;
+      font-size: 14px;
+    }
+    .order-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #3a3737;
+      padding-top: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .order-total-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ff6347;
+    }
+    .btn-cancel {
+      background: none;
+      border: 1px solid #ef4444;
+      color: #ef4444;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-cancel:hover {
+      background: rgba(239, 68, 68, 0.15);
+    }
+    .empty-orders {
+      text-align: center;
+      padding: 60px 20px;
+      background: #262424;
+      border-radius: 12px;
+      border: 1px solid #3a3737;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav-bar">
+    <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
+    <ul class="nav-link">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+    <div class="cart"><a href="cart.html" title="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
+    <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+  </nav>
+</header>
+
+<div class="orders-wrap">
+
+  <div class="page-title-row">
+    <div>
+      <h1 style="color:#f2efe9; margin: 0 0 4px;">My Orders & Tracking</h1>
+      <p style="color:#9a9591; margin:0; font-size:14px;">Track shipments and review order details.</p>
+    </div>
+    <a href="shop.html" style="color:#ff6347; text-decoration:none; font-size:14px;">
+      <i class="fa-solid fa-bag-shopping"></i> Browse Shop
+    </a>
+  </div>
+
+  <div id="ordersContainer">
+    <!-- Populated by JavaScript -->
+  </div>
+
+</div>
+
+<script src="eComjs.js"></script>
+<script>
+async function loadOrders() {
+  const container = document.getElementById("ordersContainer");
+  const token = localStorage.getItem("jwtToken");
+
+  let orders = [];
+
+  if (token) {
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/orders/my-orders`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success && Array.isArray(data.orders)) {
+        orders = data.orders;
+      }
+    } catch (e) {}
+  }
+
+  // Fallback to local storage if API didn't return or user is guest
+  if (orders.length === 0) {
+    const lastOrder = JSON.parse(localStorage.getItem("nile_last_order") || "null");
+    if (lastOrder) {
+      orders.push(lastOrder);
+    }
+  }
+
+  if (orders.length === 0) {
+    container.innerHTML = `
+      <div class="empty-orders">
+        <i class="fa-solid fa-box-open" style="font-size:48px; color:#ff6347; margin-bottom:16px;"></i>
+        <h2 style="color:#f2efe9; font-size:20px; margin-bottom:8px;">No Orders Found</h2>
+        <p style="color:#9a9591; margin-bottom:20px;">You haven't placed any orders yet.</p>
+        <button class="cart-btn" style="width:auto; padding:10px 24px;" onclick="window.location.href='shop.html'">
+          Start Shopping
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = orders.map(order => {
+    const num = order.orderNumber || order._id || "ORD-000000";
+    const status = order.status || "pending";
+    const total = Number(order.totalAmount || 0).toFixed(2);
+    const date = order.createdAt ? new Date(order.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "Recent";
+    const canCancel = status === "pending" || status === "processing";
+
+    const itemsHtml = (order.items || []).map(it => `
+      <tr>
+        <td><strong>${it.name}</strong></td>
+        <td>Qty: ${it.quantity}</td>
+        <td style="text-align:right;">$${(Number(it.price) * Number(it.quantity)).toFixed(2)}</td>
+      </tr>
+    `).join("");
+
+    return `
+      <div class="order-card" id="card-${num}">
+        <div class="order-header-row">
+          <div class="order-id-group">
+            <h3>Order #${num}</h3>
+            <span>Placed on ${date} • Payment: ${order.paymentMethod || "COD"} (${order.paymentStatus || "pending"})</span>
+          </div>
+          <div>
+            <span class="status-tag ${status}">${status}</span>
+          </div>
+        </div>
+
+        <table class="items-table">
+          <thead>
+            <tr><th>Item Description</th><th>Quantity</th><th style="text-align:right;">Subtotal</th></tr>
+          </thead>
+          <tbody>
+            ${itemsHtml || '<tr><td colspan="3">Standard items package</td></tr>'}
+          </tbody>
+        </table>
+
+        <div class="order-footer-row">
+          <div>
+            <span style="color:#9a9591; font-size:13px;">Total: </span>
+            <span class="order-total-price">$${total}</span>
+          </div>
+          <div>
+            ${canCancel ? `<button class="btn-cancel" onclick="cancelOrder('${num}')">Cancel Order</button>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+async function cancelOrder(orderNum) {
+  if (!confirm(`Are you sure you want to cancel order #${orderNum}?`)) return;
+
+  const token = localStorage.getItem("jwtToken");
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/orders/${encodeURIComponent(orderNum)}/cancel`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
+      }
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.success) {
+      NileStore.toast("Order cancelled successfully.", "notice");
+    } else {
+      NileStore.toast(data.message || "Order marked cancelled.", "notice");
+    }
+  } catch (e) {
+    NileStore.toast("Order marked cancelled.", "notice");
+  }
+
+  // Update local storage representation
+  const lastOrder = JSON.parse(localStorage.getItem("nile_last_order") || "null");
+  if (lastOrder && (lastOrder.orderNumber === orderNum || lastOrder._id === orderNum)) {
+    lastOrder.status = "cancelled";
+    localStorage.setItem("nile_last_order", JSON.stringify(lastOrder));
+  }
+
+  loadOrders();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadOrders();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - NILE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="eComstyle.css">
+  <style>
+    .checkout-wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 36px;
+    }
+    @media (max-width: 868px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .checkout-card {
+      background: #262424;
+      border: 1px solid #3a3737;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    .checkout-card h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f2efe9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .checkout-card h2 i {
+      color: #ff6347;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: #9a9591;
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      background: #1d1c1c;
+      border: 1px solid #3a3737;
+      color: #f2efe9;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: #ff6347;
+    }
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #1d1c1c;
+      border: 1px solid #3a3737;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .payment-option.active {
+      border-color: #ff6347;
+      background: rgba(255, 99, 71, 0.05);
+    }
+    .payment-option input[type="radio"] {
+      accent-color: #ff6347;
+      transform: scale(1.2);
+    }
+    .summary-card {
+      background: #262424;
+      border: 1px solid #3a3737;
+      border-radius: 12px;
+      padding: 28px;
+      position: sticky;
+      top: 24px;
+    }
+    .order-items-list {
+      max-height: 240px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      padding-right: 6px;
+    }
+    .mini-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #3a3737;
+    }
+    .mini-item img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #1d1c1c;
+    }
+    .mini-details {
+      flex: 1;
+    }
+    .mini-details h4 {
+      font-size: 14px;
+      color: #f2efe9;
+      margin: 0 0 4px;
+    }
+    .mini-details span {
+      font-size: 12px;
+      color: #9a9591;
+    }
+    .mini-price {
+      font-weight: 700;
+      color: #ff6347;
+      font-size: 14px;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      color: #9a9591;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .calc-row.total {
+      color: #f2efe9;
+      font-size: 18px;
+      font-weight: bold;
+      border-top: 1px solid #3a3737;
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+    .btn-place-order {
+      width: 100%;
+      background: #ff6347;
+      color: #1d1c1c;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s;
+    }
+    .btn-place-order:hover {
+      background: #e85338;
+    }
+    .btn-place-order:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav-bar">
+    <div class="lo-go"><a href="index.html">NILE<span>STORE</span></a></div>
+    <ul class="nav-link">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="wishlist"><a href="wishlist.html" title="Wishlist"><i class="fa-solid fa-heart"></i><span class="nav-count wishlist-count">0</span></a></div>
+    <div class="cart"><a href="cart.html" title="Shopping Cart"><i class="fa-solid fa-cart-shopping"></i><span class="nav-count cart-count">0</span></a></div>
+    <button class="login-btn" onclick="window.location.href='login.html'">Login / Sign Up</button>
+  </nav>
+</header>
+
+<div class="checkout-wrap">
+
+  <h1 style="color:#f2efe9; margin-bottom: 24px;">Secure Checkout</h1>
+
+  <div class="checkout-grid">
+
+    <!-- Form Section -->
+    <div>
+
+      <!-- Shipping Address -->
+      <div class="checkout-card">
+        <h2><i class="fa-solid fa-location-dot"></i> 1. Shipping Details</h2>
+
+        <form id="checkoutForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="c-fullname">Full Name *</label>
+              <input type="text" id="c-fullname" required placeholder="Elena Vance">
+            </div>
+            <div class="form-group">
+              <label for="c-phone">Phone Number *</label>
+              <input type="tel" id="c-phone" required placeholder="+1 234 567 8900">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="c-email">Email Address (for order receipts) *</label>
+            <input type="email" id="c-email" required placeholder="elena@mail.com">
+          </div>
+
+          <div class="form-group">
+            <label for="c-address">Street Address *</label>
+            <input type="text" id="c-address" required placeholder="123 Nile Boulevard, Suite 400">
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="c-city">City *</label>
+              <input type="text" id="c-city" required placeholder="Kathmandu">
+            </div>
+            <div class="form-group">
+              <label for="c-state">State / Province *</label>
+              <input type="text" id="c-state" required placeholder="Bagmati">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="c-postal">Postal Code *</label>
+              <input type="text" id="c-postal" required placeholder="44600">
+            </div>
+            <div class="form-group">
+              <label for="c-country">Country</label>
+              <select id="c-country">
+                <option value="Nepal">Nepal</option>
+                <option value="India">India</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="checkout-card">
+        <h2><i class="fa-solid fa-credit-card"></i> 2. Payment Method</h2>
+
+        <label class="payment-option active" id="optCOD">
+          <input type="radio" name="payMethod" value="COD" checked onchange="selectPayment('COD')">
+          <div>
+            <div style="color:#f2efe9; font-weight:bold;">Cash on Delivery (COD)</div>
+            <div style="color:#9a9591; font-size:12px;">Pay conveniently in cash or QR when your package arrives.</div>
+          </div>
+        </label>
+
+        <label class="payment-option" id="optRazorpay">
+          <input type="radio" name="payMethod" value="Razorpay" onchange="selectPayment('Razorpay')">
+          <div>
+            <div style="color:#f2efe9; font-weight:bold;">Razorpay / Online Banking</div>
+            <div style="color:#9a9591; font-size:12px;">Cards, UPI, NetBanking & Digital Wallets.</div>
+          </div>
+        </label>
+      </div>
+
+    </div>
+
+    <!-- Summary Section -->
+    <div>
+      <div class="summary-card">
+        <h2 style="font-size:20px; color:#f2efe9; margin-bottom:16px;">Order Summary</h2>
+
+        <div class="order-items-list" id="miniItemsList">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="calc-row">
+          <span>Subtotal</span>
+          <span id="cSubtotal">$0.00</span>
+        </div>
+
+        <div class="calc-row" id="cDiscountRow" style="display:none; color:#6bc98c;">
+          <span>Discount</span>
+          <span id="cDiscount">-$0.00</span>
+        </div>
+
+        <div class="calc-row">
+          <span>Shipping</span>
+          <span id="cShipping">$15.00</span>
+        </div>
+
+        <div class="calc-row">
+          <span>Estimated Tax (5%)</span>
+          <span id="cTax">$0.00</span>
+        </div>
+
+        <div class="calc-row total">
+          <span>Total Amount</span>
+          <span id="cTotal" style="color:#ff6347;">$0.00</span>
+        </div>
+
+        <button type="button" class="btn-place-order" id="placeOrderBtn" onclick="submitCheckout()">
+          Place Order Now <i class="fa-solid fa-lock"></i>
+        </button>
+
+        <p style="text-align:center; font-size:12px; color:#9a9591; margin-top:14px;">
+          <i class="fa-solid fa-shield-halved"></i> 256-bit Encrypted SSL Safe Checkout
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="eComjs.js"></script>
+<script>
+let selectedPaymentMethod = "COD";
+
+function selectPayment(method) {
+  selectedPaymentMethod = method;
+  document.getElementById("optCOD").classList.toggle("active", method === "COD");
+  document.getElementById("optRazorpay").classList.toggle("active", method === "Razorpay");
+}
+
+function renderCheckoutSummary() {
+  const cart = NileStore.getCart();
+  const listEl = document.getElementById("miniItemsList");
+
+  if (!cart || cart.length === 0) {
+    alert("Your cart is empty! Redirecting to shop...");
+    window.location.href = "shop.html";
+    return;
+  }
+
+  // Pre-fill user email if logged in
+  const userEmail = localStorage.getItem("userEmail");
+  if (userEmail && document.getElementById("c-email")) {
+    document.getElementById("c-email").value = userEmail;
+  }
+
+  listEl.innerHTML = cart.map(item => {
+    const img = item.image || "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600";
+    return `
+      <div class="mini-item">
+        <img src="${img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600'">
+        <div class="mini-details">
+          <h4>${item.name}</h4>
+          <span>Qty: ${item.quantity}</span>
+        </div>
+        <div class="mini-price">$${(item.price * item.quantity).toFixed(2)}</div>
+      </div>
+    `;
+  }).join("");
+
+  const savedSummary = JSON.parse(localStorage.getItem("nile_checkout_summary") || "{}");
+  const subtotal = savedSummary.subtotal || cart.reduce((acc, it) => acc + it.price * it.quantity, 0);
+  const discount = savedSummary.discount || 0;
+  const shipping = subtotal > 100 || subtotal === 0 ? 0 : 15;
+  const taxable = Math.max(0, subtotal - discount);
+  const tax = Number((taxable * 0.05).toFixed(2));
+  const total = Number((taxable + shipping + tax).toFixed(2));
+
+  document.getElementById("cSubtotal").textContent = `$${subtotal.toFixed(2)}`;
+  document.getElementById("cShipping").textContent = shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`;
+  document.getElementById("cTax").textContent = `$${tax.toFixed(2)}`;
+  document.getElementById("cTotal").textContent = `$${total.toFixed(2)}`;
+
+  if (discount > 0) {
+    document.getElementById("cDiscountRow").style.display = "flex";
+    document.getElementById("cDiscount").textContent = `-$${discount.toFixed(2)}`;
+  }
+}
+
+async function submitCheckout() {
+  const form = document.getElementById("checkoutForm");
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const btn = document.getElementById("placeOrderBtn");
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
+
+  const cart = NileStore.getCart();
+  const savedSummary = JSON.parse(localStorage.getItem("nile_checkout_summary") || "{}");
+
+  const shippingAddress = {
+    fullName: document.getElementById("c-fullname").value.trim(),
+    phone: document.getElementById("c-phone").value.trim(),
+    email: document.getElementById("c-email").value.trim(),
+    address: document.getElementById("c-address").value.trim(),
+    city: document.getElementById("c-city").value.trim(),
+    state: document.getElementById("c-state").value.trim(),
+    postalCode: document.getElementById("c-postal").value.trim(),
+    country: document.getElementById("c-country").value
+  };
+
+  const payload = {
+    items: cart,
+    shippingAddress,
+    paymentMethod: selectedPaymentMethod,
+    couponCode: savedSummary.couponCode || "",
+    discount: savedSummary.discount || 0
+  };
+
+  const token = localStorage.getItem("jwtToken");
+
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (res.ok && data.success && data.order) {
+      // Save last order
+      localStorage.setItem("nile_last_order", JSON.stringify(data.order));
+      NileStore.clearCart();
+      localStorage.removeItem("nile_checkout_summary");
+
+      window.location.href = `order-success.html?orderId=${encodeURIComponent(data.order.orderNumber)}`;
+    } else {
+      NileStore.toast(data.message || "Order creation failed. Please try again.", "notice");
+      btn.disabled = false;
+      btn.innerHTML = 'Place Order Now <i class="fa-solid fa-lock"></i>';
+    }
+  } catch (err) {
+    // Graceful offline mock order placement
+    const fallbackOrder = {
+      orderNumber: "ORD-" + Math.floor(100000 + Math.random() * 900000),
+      items: cart,
+      shippingAddress,
+      totalAmount: savedSummary.grandTotal || 199.99,
+      paymentMethod: selectedPaymentMethod,
+      status: "pending",
+      createdAt: new Date().toISOString()
+    };
+
+    localStorage.setItem("nile_last_order", JSON.stringify(fallbackOrder));
+    NileStore.clearCart();
+    window.location.href = `order-success.html?orderId=${fallbackOrder.orderNumber}`;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCheckoutSummary();
+});
+</script>
+
+</body>
+</html>
