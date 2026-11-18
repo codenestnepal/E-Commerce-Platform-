@@ -454,21 +454,53 @@
     }
 
     function toggleWishlist(btn) {
+      const card = btn.closest('.cat-product-card');
+      const title = card ? (card.getAttribute('data-title') || 'Product') : 'Product';
+      const price = card ? Number(card.getAttribute('data-price') || 0) : 0;
+      const imgEl = card ? card.querySelector('img') : null;
+      const img = imgEl ? imgEl.src : '';
+      const id = 'cat_' + title.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 24);
+
       btn.classList.toggle('active');
       const icon = btn.querySelector('i');
-      if (btn.classList.contains('active')) {
-        icon.classList.remove('fa-regular');
-        icon.classList.add('fa-solid');
+      const isSaved = btn.classList.contains('active');
+
+      if (isSaved) {
+        if (icon) { icon.classList.remove('fa-regular'); icon.classList.add('fa-solid'); }
         showToast('Saved to your wishlist!');
       } else {
-        icon.classList.remove('fa-solid');
-        icon.classList.add('fa-regular');
+        if (icon) { icon.classList.remove('fa-solid'); icon.classList.add('fa-regular'); }
         showToast('Removed from your wishlist.');
+      }
+
+      if (window.NileStore) {
+        window.NileStore.toggleWishlist({ id, name: title, price, image: img });
       }
     }
 
     function addToCart(title, price) {
-      showToast(`Added "${title}" to your cart!`);
+      let img = '';
+      const cards = document.querySelectorAll('.cat-product-card');
+      for (const c of cards) {
+        if (c.getAttribute('data-title') === title) {
+          const imgEl = c.querySelector('img');
+          if (imgEl) img = imgEl.src;
+          break;
+        }
+      }
+      const id = 'cat_' + title.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 24);
+
+      if (window.NileStore) {
+        window.NileStore.addToCart({
+          id,
+          name: title,
+          price: Number(price),
+          image: img || 'Images/product-placeholder.jpg',
+          quantity: 1
+        });
+      } else {
+        showToast('Added "' + title + '" to your cart!');
+      }
     }
 
     function showToast(msg) {
@@ -499,5 +531,6 @@
       document.getElementById('productCount').innerText = `${count} Products Found`;
     }
   </script>
+  <script src="eComjs.js"></script>
 </body>
 </html>

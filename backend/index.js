@@ -18,6 +18,7 @@ const searchRoutes = require("./routes/searchRoutes");
 const categorySearchRoutes = require("./routes/categorySearchRoutes");
 const vendorRoutes = require("./routes/vendorRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 
 dotenv.config();
 
@@ -54,6 +55,9 @@ app.get("/checkout", (req, res) => res.sendFile(path.join(frontendPath, "checkou
 app.get("/orders", (req, res) => res.sendFile(path.join(frontendPath, "orders.html")));
 app.get("/shop", (req, res) => res.sendFile(path.join(frontendPath, "shop.html")));
 app.get("/wishlist", (req, res) => res.sendFile(path.join(frontendPath, "wishlist.html")));
+app.get("/login", (req, res) => res.sendFile(path.join(frontendPath, "login.html")));
+app.get("/signup", (req, res) => res.sendFile(path.join(frontendPath, "Signup.html")));
+app.get("/forgot-password", (req, res) => res.sendFile(path.join(frontendPath, "forgot-password.html")));
 
 // Core API Routes
 app.use("/auth", authRoutes);
@@ -71,6 +75,7 @@ app.use("/api", searchRoutes);
 app.use("/api", categorySearchRoutes);
 app.use("/api/v1/vendor", vendorRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 
 // Root fallback
 app.get("/", (req, res) => {

@@ -1,0 +1,27 @@
+{
+  "name": "nile-ecommerce-platform",
+  "version": "1.0.0",
+  "description": "Nile - Modern Full-Stack E-Commerce Platform with Customer Storefront, Vendor Portal, and Unified Admin Portal",
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "server": "node backend/index.js",
+    "dev": "nodemon backend/index.js",
+    "postinstall": "cd backend && npm install"
+  },
+  "keywords": [
+    "ecommerce",
+    "shopping",
+    "nodejs",
+    "express",
+    "mongodb",
+    "razorpay",
+    "admin-portal",
+    "vendor-portal"
+  ],
+  "author": "Saurav KC",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
